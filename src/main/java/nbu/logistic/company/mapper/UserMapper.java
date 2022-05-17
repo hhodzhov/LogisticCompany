@@ -1,0 +1,12 @@
+package nbu.logistic.company.mapper;
+
+import nbu.logistic.company.api.dto.UserDto;
+import nbu.logistic.company.domain.ApiUser;
+import org.mapstruct.InjectionStrategy;
+import org.mapstruct.Mapper;
+
+@Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
+public interface UserMapper {
+
+    ApiUser fromUserDtoToApiUser(UserDto userDto);
+}

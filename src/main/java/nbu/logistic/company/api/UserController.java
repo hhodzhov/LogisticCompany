@@ -6,13 +6,16 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AccessLevel;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import nbu.logistic.company.api.dto.CommonApiResponse;
+import nbu.logistic.company.api.dto.RoleToUserDto;
+import nbu.logistic.company.api.dto.UserDto;
 import nbu.logistic.company.domain.ApiUser;
 import nbu.logistic.company.domain.Role;
 import nbu.logistic.company.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,12 +34,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static nbu.logistic.company.api.constants.Endpoints.ADD_ROLE_TO_USER;
+import static nbu.logistic.company.api.constants.Endpoints.CLIENT_REGISTER;
+import static nbu.logistic.company.api.constants.Endpoints.ROLE_SAVE;
+import static nbu.logistic.company.api.constants.Endpoints.ROOT;
+import static nbu.logistic.company.api.constants.Endpoints.TOKEN_REFRESH;
+import static nbu.logistic.company.api.constants.Endpoints.USERS;
+import static nbu.logistic.company.api.constants.Endpoints.USER_SAVE;
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping(ROOT)
 @RequiredArgsConstructor
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -44,30 +54,50 @@ public class UserController {
 
     UserService userService;
 
-    @GetMapping("/users")
+    @GetMapping(USERS)
     public ResponseEntity<List<ApiUser>> getUsers() {
         return ResponseEntity.ok(userService.getUsers());
     }
 
-    @PostMapping("/user/save")
+    @PostMapping(USER_SAVE)
     public ResponseEntity<ApiUser> saveUser(@RequestBody ApiUser apiUser) {
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toUriString());
         return ResponseEntity.created(uri).body(userService.saveUser(apiUser));
     }
 
-    @PostMapping("/role/save")
+    @PostMapping(CLIENT_REGISTER)
+    public ResponseEntity<CommonApiResponse> registerClient(@RequestBody UserDto userDto) {
+
+        try {
+            userService.registerUser(userDto);
+
+            URI uri = URI.create(
+                    ServletUriComponentsBuilder.fromCurrentContextPath().path(ROOT + CLIENT_REGISTER).toUriString());
+
+            return ResponseEntity
+                    .created(uri)
+                    .body(new CommonApiResponse(true, "User registered successfully"));
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new CommonApiResponse(false, e.getMessage()));
+        }
+
+    }
+
+    @PostMapping(ROLE_SAVE)
     public ResponseEntity<Role> saveRole(@RequestBody Role role) {
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/role/save").toUriString());
         return ResponseEntity.created(uri).body(userService.saveRole(role));
     }
 
-    @PostMapping("/role/add-to-user")
-    public ResponseEntity<?> addRoleToUser(@RequestBody RoleToUserForm form) {
-        userService.addRoleToUser(form.getUserName(), form.getRoleName());
+    @PostMapping(ADD_ROLE_TO_USER)
+    public ResponseEntity<?> addRoleToUser(@RequestBody RoleToUserDto roleToUserDto) {
+        userService.addRoleToUser(roleToUserDto.getUserName(), roleToUserDto.getRoleName());
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/token/refresh")
+    @GetMapping(TOKEN_REFRESH)
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String authorizationHeader = request.getHeader(AUTHORIZATION);
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
@@ -116,10 +146,3 @@ public class UserController {
         }
     }
 }
-
-@Data
-class RoleToUserForm {
-    private String userName;
-    private String roleName;
-}
-

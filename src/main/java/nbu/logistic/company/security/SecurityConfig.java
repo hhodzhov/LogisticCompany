@@ -43,8 +43,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers("/api/login/**", "/api/token/refresh").permitAll();
-        http.authorizeRequests().antMatchers(GET, "/api/user/**").hasAnyAuthority("ROLE_USER");
-        http.authorizeRequests().antMatchers(POST, "/api/user/save/**").hasAnyAuthority("ROLE_ADMIN");
+
+        http.authorizeRequests().antMatchers(GET, "/api/client/**").hasAnyAuthority("CLIENT");
+        http.authorizeRequests().antMatchers(POST, "/api/client/**").hasAnyAuthority("CLIENT");
+
+        http.authorizeRequests().antMatchers(GET, "/api/admin/**").hasAnyAuthority("ADMIN");
+        http.authorizeRequests().antMatchers(POST, "/api/admin/**").hasAnyAuthority("ADMIN");
+
+        http.authorizeRequests().antMatchers(GET, "/api/courier/**").hasAnyAuthority("COURIER");
+        http.authorizeRequests().antMatchers(POST, "/api/courier/**").hasAnyAuthority("COURIER");
+
+        http.authorizeRequests().antMatchers(GET, "/api/agent/**").hasAnyAuthority("AGENT");
+        http.authorizeRequests().antMatchers(POST, "/api/agent/**").hasAnyAuthority("AGENT");
+
         http.authorizeRequests().anyRequest().authenticated();
 
         http.addFilter(customAuthenticationFilter);

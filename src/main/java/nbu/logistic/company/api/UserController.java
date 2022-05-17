@@ -82,7 +82,6 @@ public class UserController {
                     .status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new CommonApiResponse(false, e.getMessage()));
         }
-
     }
 
     @PostMapping(ROLE_SAVE)

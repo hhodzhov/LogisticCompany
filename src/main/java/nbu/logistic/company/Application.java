@@ -28,10 +28,10 @@ public class Application {
 	@Bean
 	CommandLineRunner run (UserService userService) {
 		return args -> {
-			userService.saveRole(new Role(null, "ROLE_USER"));
-			userService.saveRole(new Role(null, "ROLE_MANAGER"));
-			userService.saveRole(new Role(null, "ROLE_ADMIN"));
-			userService.saveRole(new Role(null, "ROLE_SUPER_ADMIN"));
+			userService.saveRole(new Role(null, "ADMIN"));
+			userService.saveRole(new Role(null, "AGENT"));
+			userService.saveRole(new Role(null, "COURIER"));
+			userService.saveRole(new Role(null, "CLIENT"));
 
 			userService.saveUser(new ApiUser(null, "John Travolta", "john", "1234", new ArrayList<>()));
 			userService.saveUser(new ApiUser(null, "Will Smith", "will", "1234", new ArrayList<>()));

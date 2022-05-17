@@ -23,6 +23,7 @@ import static javax.persistence.GenerationType.AUTO;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ApiUser {
 
+
     @Id
     @GeneratedValue(strategy = AUTO)
     Long id;

@@ -47,5 +47,4 @@ public class Application {
 			userService.addRoleToUser("arnold", "ROLE_USER");
 		};
 	}
-
 }

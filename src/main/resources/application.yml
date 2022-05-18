@@ -18,3 +18,6 @@ spring:
     url: jdbc:postgresql://127.0.0.1:5432/nbu-project
     user: postgres
     password: qwe0zPostgres
+
+taxConfig:
+

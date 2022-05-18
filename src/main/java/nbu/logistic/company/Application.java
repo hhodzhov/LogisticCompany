@@ -25,26 +25,31 @@ public class Application {
 	}
 
 	//executes after application starts
-//	@Bean
-//	CommandLineRunner run (UserService userService) {
-//		return args -> {
+	@Bean
+	CommandLineRunner run (UserService userService) {
+		return args -> {
 //			userService.saveRole(new Role(null, "ADMIN"));
 //			userService.saveRole(new Role(null, "AGENT"));
 //			userService.saveRole(new Role(null, "COURIER"));
 //			userService.saveRole(new Role(null, "CLIENT"));
 //
-//			userService.saveUser(new ApiUser(null, "John Travolta", "john", "1234", new ArrayList<>()));
-//			userService.saveUser(new ApiUser(null, "Will Smith", "will", "1234", new ArrayList<>()));
-//			userService.saveUser(new ApiUser(null, "Jim Carry", "jim", "1234", new ArrayList<>()));
-//			userService.saveUser(new ApiUser(null, "Arnold Schwarzenegger", "arnold", "1234", new ArrayList<>()));
+//			userService.saveUser(new ApiUser(null, "Ivan Ivanov", "vankata1", "1234", new ArrayList<>()));
+//			userService.saveUser(new ApiUser(null, "Petar Petrov", "pesho1", "1234", new ArrayList<>()));
+//			userService.saveUser(new ApiUser(null, "Alexander Stoyanov", "sashenkata1", "1234", new ArrayList<>()));
+//			userService.saveUser(new ApiUser(null, "Petar Tudzharov", "djaro1", "1234", new ArrayList<>()));
+//			userService.saveUser(new ApiUser(null, "Vladimir Popov", "popov1", "1234", new ArrayList<>()));
+//			userService.saveUser(new ApiUser(null, "Martin Hristov", "hristov1", "1234", new ArrayList<>()));
+//			userService.saveUser(new ApiUser(null, "Ivaylo Zahariev", "ivak1", "1234", new ArrayList<>()));
+//			userService.saveUser(new ApiUser(null, "Vladimir Chervenski", "vlado1", "1234", new ArrayList<>()));
 //
-//			userService.addRoleToUser("john", "ROLE_USER");
-//			userService.addRoleToUser("john", "ROLE_MANAGER");
-//			userService.addRoleToUser("will", "ROLE_MANAGER");
-//			userService.addRoleToUser("jim", "ROLE_ADMIN");
-//			userService.addRoleToUser("arnold", "ROLE_SUPER_ADMIN");
-//			userService.addRoleToUser("arnold", "ROLE_ADMIN");
-//			userService.addRoleToUser("arnold", "ROLE_USER");
-//		};
-//	}
+//			userService.addRoleToUser("vankata1", "CLIENT");
+//			userService.addRoleToUser("pesho1", "CLIENT");
+//			userService.addRoleToUser("vlado1", "CLIENT");
+//			userService.addRoleToUser("sashenkata1", "COURIER");
+//			userService.addRoleToUser("ivak1", "COURIER");
+//			userService.addRoleToUser("popov1", "AGENT");
+//			userService.addRoleToUser("hristov1", "AGENT");
+//			userService.addRoleToUser("djaro1", "ADMIN");
+		};
+	}
 }

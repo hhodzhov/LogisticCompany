@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static nbu.logistic.company.api.constants.Endpoints.LOGISTIC_COMPANIES_GET;
 import static nbu.logistic.company.api.constants.Endpoints.LOGISTIC_COMPANY_CREATE;
 import static nbu.logistic.company.api.constants.Endpoints.LOGISTIC_COMPANY_DELETE;
 import static nbu.logistic.company.api.constants.Endpoints.LOGISTIC_COMPANY_UPDATE;
@@ -33,7 +34,7 @@ public class CrudController {
         crudService.updateLogisticCompany(id, logisticCompanyDto);
     }
 
-    @GetMapping
+    @GetMapping(LOGISTIC_COMPANIES_GET)
     public List<LogisticCompanyDto> getLogisticCompanies() {
         return crudService.getCompanies();
     }

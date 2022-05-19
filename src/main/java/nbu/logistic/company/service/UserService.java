@@ -63,9 +63,14 @@ public class UserService implements UserDetailsService {
     }
 
     public ApiUser registerUser(UserDto userDto) {
-        ApiUser apiUser = userMapper.fromUserDtoToApiUser(userDto);
+        ApiUser apiUser = new ApiUser();
+        apiUser.setPassword(userDto.getPassword());
+        apiUser.setName(userDto.getName());
+        apiUser.setUsername(userDto.getUsername());
+        apiUser.setPassword(passwordEncoder.encode(apiUser.getPassword()));
+        apiUser = userRepository.save(apiUser);
 
-        apiUser = saveUser(apiUser);
+//        apiUser = saveUser(apiUser);
         addRoleToUser(apiUser.getUsername(), Roles.CLIENT.name());
 
         return apiUser;

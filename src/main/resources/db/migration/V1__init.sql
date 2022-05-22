@@ -1,48 +1,47 @@
-create table api_user
-(
-    id       int8 not null,
-    name     varchar(255),
-    password varchar(255),
-    username varchar(255),
-    primary key (id)
+drop sequence if exists hibernate_sequence;
+create sequence hibernate_sequence start 1 increment 1;
+
+create table "nbu-project".api_user (
+                                        id  bigserial not null,
+                                        name varchar(255),
+                                        password varchar(255),
+                                        username varchar(255),
+                                        primary key (id)
 );
 
-create table role
-(
-    id   int8 not null,
-    name varchar(255),
-    primary key (id)
+create table role (
+                      id int8 not null,
+                      name varchar(255),
+                      primary key (id)
 );
 
-create table api_user_roles
-(
-    api_user_id int8 not null,
-    roles_id    int8 not null
+create table api_user_roles (
+                                api_user_id int8 not null,
+                                roles_id int8 not null,
+                                primary key (api_user_id, roles_id)
 );
 
-create table office
-(
-    id          bigserial not null,
-    address     varchar(255),
-    city        varchar(255),
-    office_name varchar(255),
-    primary key (id)
+create table office (
+                        id  bigserial not null,
+                        address varchar(255),
+                        city varchar(255),
+                        office_name varchar(255),
+                        primary key (id)
 );
 
-create table shipment
-(
-    id                  int8    not null,
-    delivery_address    varchar(255),
-    recipient_name      varchar(255),
-    sender_name         varchar(255),
-    sent_date           timestamp,
-    shipment_status     int4,
-    to_office           boolean not null,
-    updated_date        timestamp,
-    weight              float8,
-    sent_from_office_id int8,
-    sent_to_office_id   int8,
-    primary key (id)
+create table shipment (
+                          id int8 not null,
+                          delivery_address varchar(255),
+                          recipient_name varchar(255),
+                          sender_name varchar(255),
+                          sent_date timestamp,
+                          shipment_status int4,
+                          to_office boolean not null,
+                          updated_date timestamp,
+                          weight float8,
+                          sent_from_office_id int8,
+                          sent_to_office_id int8,
+                          primary key (id)
 );
 
 --add constraints

@@ -1,17 +1,17 @@
-create table "nbu-project".logistic_company
-(
-    id                     int4 primary key,
-    name                   varchar,
-    country                varchar,
-    city                   varchar,
-    central_office_address varchar
+create table logistic_company (
+                                  id  bigserial not null,
+                                  central_office_address varchar(255),
+                                  city varchar(255),
+                                  country varchar(255),
+                                  name varchar(255),
+                                  primary key (id)
 );
 
-insert into "nbu-project".logistic_company
-values (1, 'NBU LOGISTICS', 'Bulgaria', 'Sofia', 'zhk. Ovcha Kupel 2');
+insert into "nbu-project".logistic_company (central_office_address, city, country, name)
+values ('zhk. Ovcha Kupel 2', 'Sofia', 'Bulgaria', 'NBU LOGISTICS');
 
 alter table office
-    add column logistic_company_id int4;
+    add column logistic_company_id int8;
 
 alter table office
     add constraint FK413ijhlekjh6ijeyg32pijsvb

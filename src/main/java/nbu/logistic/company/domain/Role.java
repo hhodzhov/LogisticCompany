@@ -31,11 +31,11 @@ public class Role {
     Long id;
     String name;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "api_user_roles",
-            joinColumns = {@JoinColumn(name = "api_user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "roles_id")}
-    )
-    Set<ApiUser> apiUsers = new HashSet<>();
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @JoinTable(
+//            name = "api_user_roles",
+//            joinColumns = {@JoinColumn(name = "api_user_id")},
+//            inverseJoinColumns = {@JoinColumn(name = "roles_id")}
+//    )
+//    Set<ApiUser> apiUsers = new HashSet<>();
 }

@@ -14,12 +14,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
-@Table(name = "api_user", schema = "\"nbu-project\"")
+//@Table(name = "api_user", schema = "\"nbu-project\"")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,7 +28,6 @@ import java.util.Collection;
 public class ApiUser {
 
     @Id
-    @Generated(GenerationTime.INSERT)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
@@ -35,6 +35,6 @@ public class ApiUser {
     String username;
     String password;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "apiUsers")
+    @ManyToMany(fetch = FetchType.EAGER)
     Collection<Role> roles = new ArrayList<>();
 }

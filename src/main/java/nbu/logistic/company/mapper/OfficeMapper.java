@@ -5,7 +5,7 @@ import nbu.logistic.company.domain.Office;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface OfficeMapper {
 
     @Mapping(target = "logisticCompanyId", expression = "java( office.getLogisticCompany() != null ? office.getLogisticCompany().getId() : null )")

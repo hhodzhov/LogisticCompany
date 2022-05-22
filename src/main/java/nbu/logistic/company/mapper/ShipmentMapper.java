@@ -6,7 +6,7 @@ import nbu.logistic.company.util.ConversionUtils;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(imports = {ConversionUtils.class})
+@Mapper(imports = {ConversionUtils.class}, componentModel = "spring")
 public interface ShipmentMapper {
 
     @Mapping(target = "sentFromOfficeId", expression = "java( shipment.getSentFromOffice() != null ? shipment.getSentFromOffice().getId() : null )")

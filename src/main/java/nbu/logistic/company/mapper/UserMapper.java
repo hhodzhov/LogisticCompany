@@ -13,4 +13,9 @@ public interface UserMapper {
 //    @Mapping(target = "username", expression = "java(userDto.getUsername())")
 //    @Mapping(target = "password", expression = "java(userDto.getPassword())")
 //    ApiUser fromUserDtoToApiUser(UserDto userDto);
+
+//    @Mapping(target = "name", expression = "java(userDto.getName())")
+//    @Mapping(target = "username", expression = "java(userDto.getUsername())")
+//    @Mapping(target = "password", expression = "java(userDto.getPassword())")
+    UserDto fromApiUserToUserDto(ApiUser apiUser);
 }

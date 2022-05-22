@@ -5,10 +5,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import nbu.logistic.company.api.dto.UserDto;
+import nbu.logistic.company.api.exceptions.GeneralApiException;
 import nbu.logistic.company.domain.ApiUser;
 import nbu.logistic.company.domain.Role;
 import nbu.logistic.company.enums.Roles;
-import nbu.logistic.company.mapper.UserMapper;
 import nbu.logistic.company.repository.RoleRepository;
 import nbu.logistic.company.repository.UserRepository;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -34,7 +34,6 @@ public class UserService implements UserDetailsService {
     UserRepository userRepository;
     RoleRepository roleRepository;
     PasswordEncoder passwordEncoder;
-    UserMapper userMapper;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -56,12 +55,6 @@ public class UserService implements UserDetailsService {
         return new User(user.getUsername(), user.getPassword(), authorities);
     }
 
-    public ApiUser saveUser(ApiUser apiUser) {
-        log.info("Saving new user {} to the DB", apiUser.getName());
-        apiUser.setPassword(passwordEncoder.encode(apiUser.getPassword()));
-        return userRepository.save(apiUser);
-    }
-
     public ApiUser registerUser(UserDto userDto) {
         ApiUser apiUser = new ApiUser();
         apiUser.setPassword(userDto.getPassword());
@@ -70,7 +63,6 @@ public class UserService implements UserDetailsService {
         apiUser.setPassword(passwordEncoder.encode(apiUser.getPassword()));
         apiUser = userRepository.save(apiUser);
 
-//        apiUser = saveUser(apiUser);
         addRoleToUser(apiUser.getUsername(), Roles.CLIENT.name());
 
         return apiUser;
@@ -102,5 +94,23 @@ public class UserService implements UserDetailsService {
         log.info("Fetching all users");
 
         return userRepository.findAll();
+    }
+
+    public void updateUser(Long id, UserDto userDto) {
+        ApiUser apiUser = userRepository.findById(id)
+                .orElseThrow(() -> new GeneralApiException(String.format("User with id: %s not found", id)));
+
+        apiUser.setUsername(userDto.getUsername());
+        apiUser.setName(userDto.getName());
+        apiUser.setPassword(userDto.getPassword());
+
+        log.info("User with id: {} is updated", id);
+
+    }
+
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
+
+        log.info("User with id: {} is deleted", id);
     }
 }

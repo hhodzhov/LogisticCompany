@@ -62,4 +62,8 @@ public class OfficeService {
     public void deleteOffice(Long id) {
         officeRepository.deleteById(id);
     }
+
+    public Optional<Office> findById(Long id) {
+        return officeRepository.findById(id);
+    }
 }

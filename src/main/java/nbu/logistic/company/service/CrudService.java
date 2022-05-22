@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import nbu.logistic.company.api.dto.LogisticCompanyDto;
 import nbu.logistic.company.api.dto.OfficeDto;
+import nbu.logistic.company.api.dto.ShipmentDto;
 import nbu.logistic.company.api.dto.UserDto;
 import nbu.logistic.company.domain.Role;
 import nbu.logistic.company.mapper.UserMapper;
@@ -22,6 +23,7 @@ public class CrudService {
     UserService userService;
     UserMapper userMapper;
     OfficeService officeService;
+    ShipmentService shipmentService;
 
     public void updateLogisticCompany(Long id, LogisticCompanyDto logisticCompanyDto) {
         logisticCompanyService.updateLogisticCompany(id, logisticCompanyDto);
@@ -80,5 +82,17 @@ public class CrudService {
 
     public void deleteOffice(Long id) {
         officeService.deleteOffice(id);
+    }
+
+    public List<ShipmentDto> getAllShipments() {
+        return shipmentService.getAllShipments();
+    }
+
+    public void updateShipment(Long id, ShipmentDto shipmentDto) {
+        shipmentService.updateShipment(id, shipmentDto);
+    }
+
+    public void deleteShipment(Long id) {
+        shipmentService.delete(id);
     }
 }

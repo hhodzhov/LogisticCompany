@@ -7,6 +7,7 @@ import nbu.logistic.company.api.dto.CommonApiResponse;
 import nbu.logistic.company.api.dto.LogisticCompanyDto;
 import nbu.logistic.company.api.dto.OfficeDto;
 import nbu.logistic.company.api.dto.RoleToUserDto;
+import nbu.logistic.company.api.dto.ShipmentDto;
 import nbu.logistic.company.api.dto.UserDto;
 import nbu.logistic.company.domain.Role;
 import nbu.logistic.company.service.CrudService;
@@ -36,6 +37,9 @@ import static nbu.logistic.company.api.constants.Endpoints.OFFICE_GET;
 import static nbu.logistic.company.api.constants.Endpoints.OFFICE_UPDATE;
 import static nbu.logistic.company.api.constants.Endpoints.ROLE_CREATE;
 import static nbu.logistic.company.api.constants.Endpoints.ROOT;
+import static nbu.logistic.company.api.constants.Endpoints.SHIPMENT_DELETE;
+import static nbu.logistic.company.api.constants.Endpoints.SHIPMENT_GET;
+import static nbu.logistic.company.api.constants.Endpoints.SHIPMENT_UPDATE;
 import static nbu.logistic.company.api.constants.Endpoints.USERS_GET;
 import static nbu.logistic.company.api.constants.Endpoints.USER_CREATE;
 import static nbu.logistic.company.api.constants.Endpoints.USER_DELETE;
@@ -139,4 +143,21 @@ public class CrudController {
     public void deleteOffice(@PathVariable Long id) {
         crudService.deleteOffice(id);
     }
+
+    // Shipment Crud Endpoints
+    @GetMapping(SHIPMENT_GET)
+    public ResponseEntity<List<ShipmentDto>> getAllShipments() {
+        return ResponseEntity.ok(crudService.getAllShipments());
+    }
+
+    @PostMapping(SHIPMENT_UPDATE)
+    public void updateShipment(@PathVariable Long id, @RequestBody ShipmentDto shipmentDto) {
+        crudService.updateShipment(id, shipmentDto);
+    }
+
+    @DeleteMapping(SHIPMENT_DELETE)
+    public void deleteShipment(@PathVariable Long id) {
+        crudService.deleteShipment(id);
+    }
+
 }

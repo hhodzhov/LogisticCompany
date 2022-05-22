@@ -5,10 +5,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import nbu.logistic.company.api.dto.ShipmentDto;
 import nbu.logistic.company.api.exceptions.GeneralApiException;
+import nbu.logistic.company.config.tax.TaxConfig;
 import nbu.logistic.company.domain.Office;
 import nbu.logistic.company.domain.Shipment;
 import nbu.logistic.company.mapper.ShipmentMapper;
 import nbu.logistic.company.repository.ShipmentRepository;
+import nbu.logistic.company.util.ConversionUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +25,7 @@ public class ShipmentService {
     ShipmentRepository shipmentRepository;
     ShipmentMapper shipmentMapper;
     OfficeService officeService;
+    TaxConfig taxConfig;
 
     public List<ShipmentDto> getAllShipments() {
 
@@ -50,12 +53,19 @@ public class ShipmentService {
         Optional<Office> officeTo = officeService.findById(shipmentDto.getSentToOfficeId());
         officeTo.ifPresent(shipment::setSentToOffice);
 
-        shipment.setSentDate(shipmentDto.getSentDate());
-        shipment.setUpdatedDate(shipmentDto.getUpdatedDate());
+        shipment.setSentDate(ConversionUtils.FROM_EPOC_TO_LOCAL_DATE_TIME.apply(shipmentDto.getSentDate()));
+        shipment.setUpdatedDate(ConversionUtils.FROM_EPOC_TO_LOCAL_DATE_TIME.apply(shipmentDto.getUpdatedDate()));
 
     }
 
     public void delete(Long id) {
         shipmentRepository.deleteById(id);
+    }
+
+    public void createShipment(ShipmentDto shipmentDto) {
+        Shipment shipment = shipmentMapper.toShipment(shipmentDto);
+        shipment.setPrice(taxConfig.getPrice(shipmentDto.getWeight()));
+
+        shipmentRepository.save(shipment);
     }
 }

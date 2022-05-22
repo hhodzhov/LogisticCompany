@@ -45,4 +45,6 @@ public class Shipment {
 
     LocalDateTime updatedDate;
 
+    double price;
+
 }

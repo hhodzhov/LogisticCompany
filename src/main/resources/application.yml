@@ -19,5 +19,25 @@ spring:
     user: postgres
     password: qwe0zPostgres
 
+# every range has min, max and transportationTax
+# min -> min weight for this range
+# max -> max weight for this range
+# transportationTax -> tax when wight of shipment is between min and max for given range
 taxConfig:
-
+  weightKgMultipliers:
+    range1:
+      min: 0
+      max: 5
+      transportationTax: 5.99
+    range2:
+      min: 5.01
+      max: 10
+      transportationtax: 8.99
+    range3:
+      min: 10.01
+      max: 20
+      transportationTax: 15.99
+    range4:
+      min: 20.01
+      max: 100
+      transportationTax: 25.99

@@ -28,8 +28,9 @@ public class Endpoints {
     public static final String OFFICE_DELETE = "/admin/offices/{id}/delete";
     public static final String OFFICES_CREATE = "/admin/office/create";
 
-    public static final String SHIPMENT_UPDATE = "/admin/shipment/{id}/update";
-    public static final String SHIPMENT_GET = "/admin/shipments";
-    public static final String SHIPMENT_DELETE = "/admin/shipment/{id}/delete";
+    public static final String SHIPMENT_UPDATE = "/agent/shipment/{id}/update";
+    public static final String SHIPMENT_CREATE = "/agent/shipment/create";
+    public static final String SHIPMENT_GET = "/agent/shipments";
+    public static final String SHIPMENT_DELETE = "/agent/shipment/{id}/delete";
 
 }

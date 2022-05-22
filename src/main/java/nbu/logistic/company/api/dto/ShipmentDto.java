@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import nbu.logistic.company.enums.ShipmentStatus;
 
-import java.time.LocalDateTime;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Data
 @AllArgsConstructor
@@ -21,8 +22,9 @@ public class ShipmentDto {
 
     String deliveryAddress;
 
-    Double weight;
+    double weight;
 
+    @Enumerated(EnumType.STRING)
     ShipmentStatus shipmentStatus;
 
     boolean toOffice;
@@ -31,7 +33,7 @@ public class ShipmentDto {
 
     Long sentToOfficeId;
 
-    LocalDateTime sentDate;
+    long sentDate;
 
-    LocalDateTime updatedDate;
+    long updatedDate;
 }

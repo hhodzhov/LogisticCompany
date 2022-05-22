@@ -37,6 +37,7 @@ import static nbu.logistic.company.api.constants.Endpoints.OFFICE_GET;
 import static nbu.logistic.company.api.constants.Endpoints.OFFICE_UPDATE;
 import static nbu.logistic.company.api.constants.Endpoints.ROLE_CREATE;
 import static nbu.logistic.company.api.constants.Endpoints.ROOT;
+import static nbu.logistic.company.api.constants.Endpoints.SHIPMENT_CREATE;
 import static nbu.logistic.company.api.constants.Endpoints.SHIPMENT_DELETE;
 import static nbu.logistic.company.api.constants.Endpoints.SHIPMENT_GET;
 import static nbu.logistic.company.api.constants.Endpoints.SHIPMENT_UPDATE;
@@ -153,6 +154,11 @@ public class CrudController {
     @PostMapping(SHIPMENT_UPDATE)
     public void updateShipment(@PathVariable Long id, @RequestBody ShipmentDto shipmentDto) {
         crudService.updateShipment(id, shipmentDto);
+    }
+
+    @PostMapping(SHIPMENT_CREATE)
+    public void createShipment(@RequestBody ShipmentDto shipmentDto) {
+        crudService.createShipment(shipmentDto);
     }
 
     @DeleteMapping(SHIPMENT_DELETE)

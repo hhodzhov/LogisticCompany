@@ -95,4 +95,8 @@ public class CrudService {
     public void deleteShipment(Long id) {
         shipmentService.delete(id);
     }
+
+    public void createShipment(ShipmentDto shipmentDto) {
+        shipmentService.createShipment(shipmentDto);
+    }
 }

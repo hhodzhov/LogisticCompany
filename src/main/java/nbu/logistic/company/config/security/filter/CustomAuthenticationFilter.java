@@ -1,4 +1,4 @@
-package nbu.logistic.company.security.filter;
+package nbu.logistic.company.config.security.filter;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;

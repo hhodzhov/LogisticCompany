@@ -1,8 +1,8 @@
-package nbu.logistic.company.security;
+package nbu.logistic.company.config.security;
 
 import lombok.RequiredArgsConstructor;
-import nbu.logistic.company.security.filter.CustomAuthenticationFilter;
-import nbu.logistic.company.security.filter.CustomAuthorizationFilter;
+import nbu.logistic.company.config.security.filter.CustomAuthenticationFilter;
+import nbu.logistic.company.config.security.filter.CustomAuthorizationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

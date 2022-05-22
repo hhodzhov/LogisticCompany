@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -58,5 +59,9 @@ public class LogisticCompanyService {
         logisticCompanyRepository.deleteById(id);
 
         log.info("Company with id: {} was deleted", id);
+    }
+
+    public Optional<LogisticCompany> findById(Long id) {
+        return logisticCompanyRepository.findById(id);
     }
 }

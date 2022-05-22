@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import nbu.logistic.company.api.dto.CommonApiResponse;
 import nbu.logistic.company.api.dto.LogisticCompanyDto;
+import nbu.logistic.company.api.dto.OfficeDto;
 import nbu.logistic.company.api.dto.RoleToUserDto;
 import nbu.logistic.company.api.dto.UserDto;
 import nbu.logistic.company.domain.Role;
@@ -29,6 +30,10 @@ import static nbu.logistic.company.api.constants.Endpoints.LOGISTIC_COMPANIES_GE
 import static nbu.logistic.company.api.constants.Endpoints.LOGISTIC_COMPANY_CREATE;
 import static nbu.logistic.company.api.constants.Endpoints.LOGISTIC_COMPANY_DELETE;
 import static nbu.logistic.company.api.constants.Endpoints.LOGISTIC_COMPANY_UPDATE;
+import static nbu.logistic.company.api.constants.Endpoints.OFFICES_CREATE;
+import static nbu.logistic.company.api.constants.Endpoints.OFFICE_DELETE;
+import static nbu.logistic.company.api.constants.Endpoints.OFFICE_GET;
+import static nbu.logistic.company.api.constants.Endpoints.OFFICE_UPDATE;
 import static nbu.logistic.company.api.constants.Endpoints.ROLE_CREATE;
 import static nbu.logistic.company.api.constants.Endpoints.ROOT;
 import static nbu.logistic.company.api.constants.Endpoints.USERS_GET;
@@ -44,6 +49,7 @@ public class CrudController {
 
     CrudService crudService;
 
+    // Logistic Company Crud Endpoints
     @PostMapping(LOGISTIC_COMPANY_UPDATE)
     public void updateLogisticCompany(@PathVariable Long id, LogisticCompanyDto logisticCompanyDto) {
         crudService.updateLogisticCompany(id, logisticCompanyDto);
@@ -65,6 +71,7 @@ public class CrudController {
     }
 
 
+    // User Crud Endpoints
     @PostMapping(USER_CREATE)
     public ResponseEntity<CommonApiResponse> registerClient(@RequestBody UserDto userDto) {
 
@@ -112,5 +119,24 @@ public class CrudController {
     }
 
 
+    // Office Crud Endpoints
+    @GetMapping(OFFICE_GET)
+    public ResponseEntity<List<OfficeDto>> getOffices() {
+        return ResponseEntity.ok(crudService.getOffices());
+    }
 
+    @PostMapping(OFFICES_CREATE)
+    public void createOffice(@RequestBody OfficeDto officeDto) {
+        crudService.createOffice(officeDto);
+    }
+
+    @PostMapping(OFFICE_UPDATE)
+    public void updateOffice(@PathVariable Long id, @RequestBody OfficeDto officeDto) {
+        crudService.updateOffice(id, officeDto);
+    }
+
+    @DeleteMapping(OFFICE_DELETE)
+    public void deleteOffice(@PathVariable Long id) {
+        crudService.deleteOffice(id);
+    }
 }

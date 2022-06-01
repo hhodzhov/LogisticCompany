@@ -77,7 +77,7 @@ public class CrudController {
 
 
     // User Crud Endpoints
-    @PostMapping(USER_CREATE)
+    @PostMapping("register-client")
     public ResponseEntity<CommonApiResponse> registerClient(@RequestBody UserDto userDto) {
 
         try {
@@ -102,13 +102,13 @@ public class CrudController {
     }
 
     @PostMapping(USER_UPDATE)
-    public void userUpdate(@PathVariable Long id, UserDto userDto) {
-        crudService.updateClient(id, userDto);
+    public void userUpdate(@RequestBody UserDto userDto) {
+        crudService.updateClient(userDto);
     }
 
     @DeleteMapping(USER_DELETE)
-    public void deleteUser(@PathVariable Long id) {
-        crudService.deleteUser(id);
+    public void deleteUser(@PathVariable String username) {
+        crudService.deleteUser(username);
     }
 
     @PostMapping(ROLE_CREATE)

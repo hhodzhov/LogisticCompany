@@ -1,0 +1,27 @@
+* {
+    transition: all 0.5s ease-in;
+}
+
+.bg-menu {
+    background-image: linear-gradient(rgb(179, 182, 147),rgb(119, 155, 156));
+}
+
+.bg-content {
+    background-image: linear-gradient( rgb(251, 252, 238), rgb(224, 244, 245));
+    overflow: hidden;
+}
+
+.nav-link {
+    color: rgb(255, 255, 255);
+    font-weight: 700;
+}
+
+.nav-link fa-icon {
+    font-size: 2rem;
+    color: rgb(209, 209, 209);
+}
+
+
+.icon-wrap:hover {
+    transform: rotate(90deg);
+}

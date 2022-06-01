@@ -96,21 +96,20 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll();
     }
 
-    public void updateUser(Long id, UserDto userDto) {
-        ApiUser apiUser = userRepository.findById(id)
-                .orElseThrow(() -> new GeneralApiException(String.format("User with id: %s not found", id)));
+    public void updateUser(UserDto userDto) {
+        ApiUser apiUser = userRepository.findByUsername(userDto.getUsername());
 
         apiUser.setUsername(userDto.getUsername());
         apiUser.setName(userDto.getName());
         apiUser.setPassword(userDto.getPassword());
 
-        log.info("User with id: {} is updated", id);
+        log.info("User {} is updated", userDto.getUsername());
 
     }
 
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+    public void deleteUser(String username) {
+        userRepository.deleteByUsername(username);
 
-        log.info("User with id: {} is deleted", id);
+        log.info("User {} is deleted", username);
     }
 }

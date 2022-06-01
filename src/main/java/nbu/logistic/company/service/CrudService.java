@@ -52,12 +52,12 @@ public class CrudService {
                 .collect(Collectors.toList());
     }
 
-    public void updateClient(Long id, UserDto userDto) {
-        userService.updateUser(id, userDto);
+    public void updateClient(UserDto userDto) {
+        userService.updateUser(userDto);
     }
 
-    public void deleteUser(Long id) {
-        userService.deleteUser(id);
+    public void deleteUser(String username) {
+        userService.deleteUser(username);
     }
 
     public Role saveRole(Role role) {

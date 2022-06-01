@@ -77,7 +77,7 @@ public class CrudController {
 
 
     // User Crud Endpoints
-    @PostMapping("register-client")
+    @PostMapping(USER_CREATE)
     public ResponseEntity<CommonApiResponse> registerClient(@RequestBody UserDto userDto) {
 
         try {

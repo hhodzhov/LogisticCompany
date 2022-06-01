@@ -42,7 +42,7 @@ export class AuthService {
     }
 
     public register(username: any, password: any, name: any) {
-        this.http.post('http://localhost:8080/api/register-client', {
+        this.http.post('http://localhost:8080/api/public/user/create', {
             username: username,
             password: password,
             name: name

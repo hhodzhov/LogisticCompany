@@ -56,8 +56,8 @@ public class CrudController {
 
     // Logistic Company Crud Endpoints
     @PostMapping(LOGISTIC_COMPANY_UPDATE)
-    public void updateLogisticCompany(@PathVariable Long id, LogisticCompanyDto logisticCompanyDto) {
-        crudService.updateLogisticCompany(id, logisticCompanyDto);
+    public void updateLogisticCompany(@RequestBody LogisticCompanyDto logisticCompanyDto) {
+        crudService.updateLogisticCompany(logisticCompanyDto);
     }
 
     @GetMapping(LOGISTIC_COMPANIES_GET)
@@ -71,8 +71,8 @@ public class CrudController {
     }
 
     @DeleteMapping(LOGISTIC_COMPANY_DELETE)
-    public void deleteLogisticCompany(@PathVariable Long id) {
-        crudService.deleteLogisticCompary(id);
+    public void deleteLogisticCompany(@PathVariable String name) {
+        crudService.deleteLogisticCompary(name);
     }
 
 

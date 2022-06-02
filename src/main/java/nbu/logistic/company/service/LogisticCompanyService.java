@@ -26,17 +26,16 @@ public class LogisticCompanyService {
     LogisticCompanyRepository logisticCompanyRepository;
     CompanyMapper companyMapper;
 
-    public void updateLogisticCompany(Long id, LogisticCompanyDto logisticCompanyDto) {
+    public void updateLogisticCompany(LogisticCompanyDto logisticCompanyDto) {
 
-        LogisticCompany company = logisticCompanyRepository.findById(id)
-                .orElseThrow(() -> new GeneralApiException(String.format("Logistic company with id: %s not found", id)));
+        LogisticCompany company = logisticCompanyRepository.findByName(logisticCompanyDto.getName());
 
         company.setName(logisticCompanyDto.getName());
         company.setCountry(logisticCompanyDto.getCountry());
         company.setCentralOfficeAddress(logisticCompanyDto.getCentralOfficeAddress());
         company.setCity(logisticCompanyDto.getCity());
 
-        log.info("Company with id: {} was updated", id);
+        log.info("Company {} was updated", logisticCompanyDto.getName());
     }
 
     public List<LogisticCompanyDto> getCompanies() {
@@ -55,10 +54,10 @@ public class LogisticCompanyService {
         log.info("New company was created successfully");
     }
 
-    public void deleteCompany(Long id) {
-        logisticCompanyRepository.deleteById(id);
+    public void deleteCompany(String name) {
+        logisticCompanyRepository.deleteByName(name);
 
-        log.info("Company with id: {} was deleted", id);
+        log.info("Company {} was deleted", name);
     }
 
     public Optional<LogisticCompany> findById(Long id) {

@@ -25,8 +25,8 @@ public class CrudService {
     OfficeService officeService;
     ShipmentService shipmentService;
 
-    public void updateLogisticCompany(Long id, LogisticCompanyDto logisticCompanyDto) {
-        logisticCompanyService.updateLogisticCompany(id, logisticCompanyDto);
+    public void updateLogisticCompany(LogisticCompanyDto logisticCompanyDto) {
+        logisticCompanyService.updateLogisticCompany(logisticCompanyDto);
     }
 
     public List<LogisticCompanyDto> getCompanies() {
@@ -37,8 +37,8 @@ public class CrudService {
         logisticCompanyService.createCompany(logisticCompanyDto);
     }
 
-    public void deleteLogisticCompary(Long id) {
-        logisticCompanyService.deleteCompany(id);
+    public void deleteLogisticCompary(String name) {
+        logisticCompanyService.deleteCompany(name);
     }
 
     public void registerUser(UserDto userDto) {

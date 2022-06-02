@@ -5,7 +5,7 @@ import nbu.logistic.company.domain.LogisticCompany;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
+@Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.FIELD)
 public interface CompanyMapper {
 
     LogisticCompanyDto toLogisticCompanyDto(LogisticCompany logisticCompany);

@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-4 user-entry mb-3 mt-2" *ngFor="let user of users">
+        <div class="row" (click)="openEditUser(user)">
+            <div class="col-4">
+                <img class="card-img-top pic rounded-circle"
+                    src="https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"
+                    alt="Card image cap">
+            </div>
+            <div class="col-4">
+                <h2>{{user.name}}</h2>
+            </div>
+            <div class="col-4">
+                <h3>{{user.username}}</h3>
+            </div>
+        </div>
+    </div>
+</div>

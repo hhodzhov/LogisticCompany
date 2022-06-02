@@ -1,9 +1,9 @@
 spring:
   datasource:
     username: postgres
-    url: jdbc:postgresql://127.0.0.1:5432/nbu-project
+    url: jdbc:postgresql://127.0.0.1:5432/postgres
     hikari:
-      schema: nbu-project
+      schema: public
     password: qwe0zPostgres
   jpa:
     properties:
@@ -14,8 +14,8 @@ spring:
 #      ddl-auto: create
     show-sql: 'true'
   flyway:
-    schemas: nbu-project
-    url: jdbc:postgresql://127.0.0.1:5432/nbu-project
+    schemas: public
+    url: jdbc:postgresql://127.0.0.1:5432/postgres
     user: postgres
     password: qwe0zPostgres
 

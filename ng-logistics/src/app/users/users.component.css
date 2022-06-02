@@ -1,0 +1,22 @@
+* {
+    transition: all 0.2s ease-in;
+}
+
+.pic {
+    width: 150px;
+    height: 150px;
+}
+
+.user-entry {
+    border: 1px solid rgba(165, 165, 165, 0.281);
+    cursor: pointer;
+}
+
+.user-entry:hover {
+    transform: scale(1.05);
+}
+
+.name {
+    font-size: 2rem;
+}
+

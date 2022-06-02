@@ -1,7 +1,7 @@
 drop sequence if exists hibernate_sequence;
 create sequence hibernate_sequence start 1 increment 1;
 
-create table "nbu-project".api_user (
+create table api_user (
                                         id  bigserial not null,
                                         name varchar(255),
                                         password varchar(255),

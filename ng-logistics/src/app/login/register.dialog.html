@@ -1,0 +1,30 @@
+<form>
+    <h1>Register New User</h1>
+
+    <div class="form-outline mb-4">
+        <input #name type="text" id="form2Example1" class="form-control" (change)="updateName(name.value)" />
+        <label class="form-label" for="form2Example1">Name</label>
+    </div>
+
+    <div class="form-outline mb-4">
+        <input #username type="text" id="form2Example1" class="form-control"
+            (change)="updateUsername(username.value)" />
+        <label class="form-label" for="form2Example1">Username</label>
+    </div>
+
+    <div class="form-outline mb-4">
+        <input #password type="text" id="form2Example2" class="form-control"
+            (change)="updatePassword(password.value)" />
+        <label class="form-label" for="form2Example2">Password</label>
+    </div>
+
+    <div class="row">
+        <button type="button" class="btn btn-primary btn-block mb-4" (click)="register()">Register</button>
+    </div>
+
+
+    <!-- Register buttons -->
+    <div class="text-center">
+        <p>Already have an account? <a href="/login?register=false">Login</a></p>
+    </div>
+</form>

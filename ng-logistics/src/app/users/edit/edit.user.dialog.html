@@ -1,0 +1,30 @@
+<form>
+    <h1>Edit User</h1>
+    <div class="form-outline mb-4">
+        <input readonly #usernamed type="email" class="form-control" (change)="updateUsername(usernamed.value)" [value]="username"/>
+        <label class="form-label" for="form2Example1">Username</label>
+    </div>
+
+    
+    <div class="form-outline mb-4">
+        <input #named type="text" class="form-control" (change)="updateName(named.value)" [value]="name"/>
+        <label class="form-label" for="form2Example2">Name</label>
+    </div>
+
+    <div class="form-outline mb-4">
+        <input readonly #passwordd type="password" class="form-control" (change)="updatePassword(passwordd.value)" [value]="password" />
+        <label class="form-label" for="form2Example2">Password</label>
+    </div>
+
+    <div class="row">
+        <button type="button" class="btn btn-primary btn-block mb-4" (click)="editUser()">Save</button>
+    </div>
+    <div class="row">
+        <button type="button" class="btn btn-warning btn-block mb-4" (click)="close()">Cancel</button>
+    </div>
+
+    <div class="row">
+        <button type="button" class="btn btn-danger btn-block mb-4" (click)="deleteUser()">Delete</button>
+    </div>
+
+</form>

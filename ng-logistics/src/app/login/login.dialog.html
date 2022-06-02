@@ -1,0 +1,25 @@
+<form>
+    <h1>Login</h1>
+    <div class="form-outline mb-4">
+        <input #username type="email" class="form-control" (change)="updateUsername(username.value)"/>
+        <label class="form-label" for="form2Example1">Username</label>
+    </div>
+
+    <div class="form-outline mb-4">
+        <input #password type="text" class="form-control" (change)="updatePassword(password.value)" />
+        <label class="form-label" for="form2Example2">Password</label>
+    </div>
+
+    <div class="row">
+        <button type="button" class="btn btn-primary btn-block mb-4" (click)="signIn()">Sign in</button>
+    </div>
+
+
+    <!-- Register buttons -->
+    <div class="text-center">
+        <p>New user? <a href="/login?register=true">Register</a></p>
+    </div>
+</form>
+
+
+<!-- "C:\Program Files\Google\Chrome\Application\chrome.exe" --user-data-dir="C:/Chrome dev session" --disable-web-security -->

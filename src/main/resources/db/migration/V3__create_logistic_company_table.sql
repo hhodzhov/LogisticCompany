@@ -7,7 +7,7 @@ create table logistic_company (
                                   primary key (id)
 );
 
-insert into "nbu-project".logistic_company (central_office_address, city, country, name)
+insert into logistic_company (central_office_address, city, country, name)
 values ('zhk. Ovcha Kupel 2', 'Sofia', 'Bulgaria', 'NBU LOGISTICS');
 
 alter table office

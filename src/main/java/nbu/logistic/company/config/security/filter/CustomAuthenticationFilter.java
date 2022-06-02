@@ -27,6 +27,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @Slf4j
 public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
+    private static final ObjectMapper MAPPER = new ObjectMapper();
     private final AuthenticationManager authenticationManager;
 
     public CustomAuthenticationFilter(AuthenticationManager authenticationManager) {
@@ -38,14 +39,18 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws AuthenticationException {
 
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        UserLogin loginData;
+        try {
+            loginData = MAPPER.readValue(request.getReader().lines().collect(Collectors.joining()), UserLogin.class);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
-        log.info("username is: {}, password is: {}", username, password);
+        log.info("username is: {}, password is: {}", loginData.getUsername(), loginData.getPassword());
 
         //get the username and password which comes with the httpRequest
         UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(username, password);
+                new UsernamePasswordAuthenticationToken(loginData.getUsername(), loginData.getPassword());
 
         //authenticate the user
         return authenticationManager.authenticate(authenticationToken);
@@ -91,6 +96,28 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         tokens.put("refresh_token", refreshToken);
 
         response.setContentType(APPLICATION_JSON_VALUE);
-        new ObjectMapper().writeValue(response.getOutputStream(), tokens);
+        MAPPER.writeValue(response.getOutputStream(), tokens);
+    }
+
+
+    static class UserLogin {
+        private String username;
+        private String password;
+
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
     }
 }

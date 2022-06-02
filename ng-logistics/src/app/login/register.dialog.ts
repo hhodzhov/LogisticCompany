@@ -5,7 +5,7 @@ import { AuthService } from "../auth/auth.service";
 @Component({
     selector: 'register-dialog',
     templateUrl: './register.dialog.html',
-    styleUrls: ['./register.dialog.css']
+    styleUrls: []
 })
 export class RegisterDialog {
     constructor(

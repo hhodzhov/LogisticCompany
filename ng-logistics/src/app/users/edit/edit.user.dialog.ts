@@ -6,7 +6,7 @@ import { AuthService } from "src/app/auth/auth.service";
 @Component({
     selector: 'edit-user',
     templateUrl: './edit.user.dialog.html',
-    styleUrls: ['./edit.user.dialog.css']
+    styleUrls: []
 })
 export class EditUserDialog {
     constructor(

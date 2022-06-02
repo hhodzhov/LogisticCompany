@@ -20,6 +20,7 @@ import { MatInputModule } from "@angular/material/input";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatIconModule } from "@angular/material/icon";
 import { CommonModule } from '@angular/common';
+import { CompaniesComponent } from './companies/companies.component';
 
 
 
@@ -27,7 +28,8 @@ import { CommonModule } from '@angular/common';
   declarations: [
     AppComponent,
     UsersComponent,
-    LoginComponent
+    LoginComponent,
+    CompaniesComponent
   ],
   imports: [
     AppRoutingModule,

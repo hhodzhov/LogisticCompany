@@ -12,9 +12,9 @@ public class Endpoints {
     public static final String TOKEN_REFRESH = "/token/refresh";
     public static final String CLIENT_REGISTER = "/register-client";
 
-    public static final String LOGISTIC_COMPANY_UPDATE = "/admin/logistic-company/{id}/update";
+    public static final String LOGISTIC_COMPANY_UPDATE = "/admin/logistic-company/update";
     public static final String LOGISTIC_COMPANIES_GET = "/admin/logistic-companies";
-    public static final String LOGISTIC_COMPANY_DELETE = "/admin/logistic-company/{id}/delete";
+    public static final String LOGISTIC_COMPANY_DELETE = "/admin/logistic-company/{name}/delete";
     public static final String LOGISTIC_COMPANY_CREATE = "/admin/logistic-company/create";
 
     public static final String USER_UPDATE = "/admin/user/update";

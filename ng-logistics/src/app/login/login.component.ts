@@ -8,7 +8,7 @@ import { RegisterDialog } from "./register.dialog";
 @Component({
     selector: 'login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css']
+    styleUrls: []
 })
 export class LoginComponent implements OnInit {
     constructor(public dialog: MatDialog, private route: ActivatedRoute) {

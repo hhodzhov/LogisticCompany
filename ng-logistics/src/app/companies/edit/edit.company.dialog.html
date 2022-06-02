@@ -1,0 +1,36 @@
+<form>
+    <h1>Edit Company</h1>
+    <div class="form-outline mb-4">
+        <input readonly #named type="email" class="form-control" (change)="updateName(named.value)" [value]="name" />
+        <label class="form-label" for="form2Example1">Name</label>
+    </div>
+
+    <div class="form-outline mb-4">
+        <input #cityd type="text" class="form-control" (change)="updateCity(cityd.value)" [value]="city" />
+        <label class="form-label" for="form2Example2">City</label>
+    </div>
+
+    <div class="form-outline mb-4">
+        <input #addressd type="text" class="form-control" (change)="updateAddress(addressd.value)" [value]="address" />
+        <label class="form-label" for="form2Example2">Address</label>
+    </div>
+
+    <div class="form-outline mb-4">
+        <input #countryd type="text" class="form-control" (change)="updateCountry(countryd.value)" [value]="country" />
+        <label class="form-label" for="form2Example2">Country</label>
+    </div>
+
+    <div class="row">
+        <button type="button" class="btn btn-primary btn-block mb-4" (click)="updateCompany()">Save</button>
+    </div>
+
+    <div class="row">
+        <button type="button" class="btn btn-warning btn-block mb-4" (click)="cancel()">Cancel</button>
+    </div>
+
+    <div class="row">
+        <button type="button" class="btn btn-danger btn-block mb-4" (click)="delete()">Delete</button>
+    </div>
+
+
+</form>

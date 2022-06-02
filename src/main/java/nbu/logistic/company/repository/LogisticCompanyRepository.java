@@ -7,4 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LogisticCompanyRepository extends JpaRepository<LogisticCompany, Long> {
 
+    LogisticCompany findByName(String name);
+
+    void deleteByName(String name);
+
 }

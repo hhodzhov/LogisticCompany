@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OfficeRepository extends JpaRepository<Office, Long> {
+    Office findByOfficeName(String officeName);
+
+    void deleteByOfficeName(String officeName);
 }

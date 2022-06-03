@@ -4,50 +4,29 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { AuthService } from "src/app/auth/auth.service";
 
 @Component({
-    selector: 'create-company',
-    templateUrl: './create.company.dialog.html',
+    selector: 'edit-company',
+    templateUrl: './edit.office.dialog.html',
     styleUrls: []
 })
-export class CreateCompany {
+export class EditOffice {
     constructor(
-        public dialogRef: MatDialogRef<CreateCompany>,
+        public dialogRef: MatDialogRef<EditOffice>,
         @Inject(MAT_DIALOG_DATA) data: any,
         private authService: AuthService,
         private http: HttpClient) {
 
-        if (data) {
-            console.log(data);
-            this.name = data.name;
-            this.country = data.country;
-            this.address = data.centralOfficeAddress;
-            this.city = data.city;
-        } else {
-            this.isUpdate = false;
-        }
+        console.log(data);
+        this.city = data.city;
+        this.officeName = data.officeName;
+        this.address = data.address;
+        this.logisticCompanyId = data.logisticCompanyId;
     }
 
-    isUpdate = true;
 
-    name: any = '';
-    country: any = '';
     city: any = '';
+    officeName: any = '';
     address: any = '';
-
-    updateName(name: any) {
-        this.name = name;
-    }
-
-    updateCountry(country: any) {
-        this.country = country;
-    }
-
-    updateCity(city: any) {
-        this.city = city;
-    }
-
-    updateAddress(address: any) {
-        this.address = address;
-    }
+    logisticCompanyId: any = ''
 
     create() {
         let token = this.authService.getToken();
@@ -72,12 +51,25 @@ export class CreateCompany {
             })
     }
 
+    updateOfficeName(officeName: any) {
+        this.officeName = officeName;
+    }
+
+    updateAddress(address: any) {
+        this.address = address;
+    }
+
+    updateCity(city: any) {
+        this.city = city;
+    }
+
+
     close() {
         this.dialogRef.close();
     }
 
     cancel() {
-
+        this.close();
     }
 
 

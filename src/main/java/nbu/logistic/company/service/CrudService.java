@@ -76,12 +76,12 @@ public class CrudService {
         officeService.createOffice(officeDto);
     }
 
-    public void updateOffice(Long id, OfficeDto officeDto) {
-        officeService.updateOffice(id, officeDto);
+    public void updateOffice(OfficeDto officeDto) {
+        officeService.updateOffice(officeDto);
     }
 
-    public void deleteOffice(Long id) {
-        officeService.deleteOffice(id);
+    public void deleteOffice(String name) {
+        officeService.deleteOffice(name);
     }
 
     public List<ShipmentDto> getAllShipments() {

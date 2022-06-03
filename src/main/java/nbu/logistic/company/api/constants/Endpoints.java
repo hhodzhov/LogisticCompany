@@ -21,9 +21,9 @@ public class Endpoints {
     public static final String USERS_GET = "/admin/users";
     public static final String USER_DELETE = "/admin/user/{username}/delete";
     public static final String USER_CREATE = "/public/user/create";
-    public static final String OFFICE_UPDATE = "/admin/office/{id}/update";
+    public static final String OFFICE_UPDATE = "/admin/office/update";
     public static final String OFFICE_GET = "/admin/offices";
-    public static final String OFFICE_DELETE = "/admin/offices/{id}/delete";
+    public static final String OFFICE_DELETE = "/admin/offices/{name}/delete";
     public static final String OFFICES_CREATE = "/admin/office/create";
 
     public static final String SHIPMENT_UPDATE = "/agent/shipment/{id}/update";

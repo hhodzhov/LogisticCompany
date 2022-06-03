@@ -2,30 +2,30 @@
     transition: all 0.2s ease-in;
 }
 
-.pic {
-    width: 150px;
-    height: 150px;
-}
-
-.user-entry {
+.entry {
     border: 1px solid rgba(165, 165, 165, 0.281);
     cursor: pointer;
 }
 
-.user-entry:hover {
-    transform: scale(1.05);
+.entry:hover {
+    transform: scale(1.03);
 }
 
-.name {
-    font-size: 2rem;
+.link-text {
+    color: dodgerblue;
 }
 
-.create-user {
+.link-text:hover {
+    color: blue;
+    cursor: pointer;
+}
+
+.crate-office {
     transform-origin: center;
     font-size: 4rem;
     cursor: pointer;
 }
 
-.create-user:hover {
+.crate-office:hover {
     transform: scale(1.1);
 }

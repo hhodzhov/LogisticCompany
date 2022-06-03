@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-1 crate-office mb-3 mt-2" (click)="createOffice()">
+        <fa-icon [icon]="createCompanyIcon"></fa-icon>
+    </div>
+    <div class="col-4 entry mb-3 mt-2" *ngFor="let office of offices">
+        <div class="row" (click)="openEditOffices(office)">
+            <div class="col-4">
+                <img class="card-img-top pic rounded-circle"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Office_room_icon.svg/120px-Office_room_icon.svg.png?20150330164957"
+                    alt="Card image cap">
+            </div>
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>{{office.city}}</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h3>{{office.officeName}}</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <h3>{{office.address}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

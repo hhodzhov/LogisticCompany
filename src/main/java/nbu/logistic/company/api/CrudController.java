@@ -136,13 +136,13 @@ public class CrudController {
     }
 
     @PostMapping(OFFICE_UPDATE)
-    public void updateOffice(@PathVariable Long id, @RequestBody OfficeDto officeDto) {
-        crudService.updateOffice(id, officeDto);
+    public void updateOffice(@RequestBody OfficeDto officeDto) {
+        crudService.updateOffice(officeDto);
     }
 
     @DeleteMapping(OFFICE_DELETE)
-    public void deleteOffice(@PathVariable Long id) {
-        crudService.deleteOffice(id);
+    public void deleteOffice(@PathVariable String name) {
+        crudService.deleteOffice(name);
     }
 
     // Shipment Crud Endpoints

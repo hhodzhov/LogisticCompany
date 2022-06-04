@@ -12,6 +12,8 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 public class LogisticCompanyDto {
 
+    Long id;
+
     String name;
 
     String country;

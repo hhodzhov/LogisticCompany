@@ -29,7 +29,7 @@ public class LogisticCompany {
 
     String centralOfficeAddress;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "logisticCompany")
     List<Office> offices = new ArrayList<>();
 
 }

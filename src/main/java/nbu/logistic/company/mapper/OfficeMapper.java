@@ -9,6 +9,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface OfficeMapper {
 
+    @Mapping(target = "id", source = "id")
     @Mapping(target = "logisticCompanyId", expression = "java( office.getLogisticCompany() != null ? office.getLogisticCompany().getId() : null )")
     OfficeDto toOfficeDto(Office office);
 

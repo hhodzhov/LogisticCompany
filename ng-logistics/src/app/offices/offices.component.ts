@@ -30,7 +30,7 @@ export class OfficesComponent implements OnInit {
 
         let ref = this.dialog.open(EditOffice, dialogConfig);
 
-        ref.afterClosed().subscribe(_result => {
+        ref.afterClosed().subscribe((result: any) => {
             this.reloadOffices();
         });
     }

@@ -22,6 +22,12 @@
         <label class="form-label" for="form2Example2">Address</label>
     </div>
 
+    <div *ngIf="companies" class="form-outline mb-4">
+        <select class="form-select" aria-label="Default select example" name="company" [(ngModel)]="data.logisticCompanyId">
+            <option *ngFor="let company of companies" [value]="company.id">{{company.name}}</option>
+        </select>
+    </div>
+
     <div class="row" *ngIf="isEdit">
         <button type="button" class="btn btn-primary btn-block mb-4" (click)="update()">Save</button>
     </div>

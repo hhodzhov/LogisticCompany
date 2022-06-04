@@ -30,7 +30,7 @@ public class Office {
 
     String address;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "logistic_company_id")
     LogisticCompany logisticCompany;
 

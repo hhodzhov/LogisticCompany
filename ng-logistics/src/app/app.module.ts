@@ -27,6 +27,8 @@ import { ApiService } from './api.service';
 import { EditCompany } from './companies/edit/edit.company.dialog';
 import { EditOffice } from './offices/edit/edit.office.dialog';
 import { EditUserDialog } from './users/edit/edit.user.dialog';
+import { ShipmentsComponent } from './shipments/shipments.components';
+import { EditShipment } from './shipments/edit/edit.shipment.dialog';
 
 
 @NgModule({
@@ -36,9 +38,11 @@ import { EditUserDialog } from './users/edit/edit.user.dialog';
     LoginComponent,
     CompaniesComponent,
     OfficesComponent,
+    ShipmentsComponent,
     EditCompany,
     EditOffice,
-    EditUserDialog
+    EditUserDialog,
+    EditShipment
   ],
   imports: [
     CommonModule,
@@ -65,7 +69,8 @@ import { EditUserDialog } from './users/edit/edit.user.dialog';
   entryComponents: [
     EditCompany,
     EditOffice,
-    EditUserDialog],
+    EditUserDialog,
+    EditShipment],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

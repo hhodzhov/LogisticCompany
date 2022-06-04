@@ -14,6 +14,8 @@ public class Endpoints {
 
     public static final String LOGISTIC_COMPANY_UPDATE = "/admin/logistic-company/update";
     public static final String LOGISTIC_COMPANIES_GET = "/admin/logistic-companies";
+
+    public static final String LOGISTIC_CLIENTS_GET = "/admin/{companyName}/logistic-clients";
     public static final String LOGISTIC_COMPANY_DELETE = "/admin/logistic-company/{name}/delete";
     public static final String LOGISTIC_COMPANY_CREATE = "/admin/logistic-company/create";
 
@@ -30,5 +32,8 @@ public class Endpoints {
     public static final String SHIPMENT_CREATE = "/agent/shipment/create";
     public static final String SHIPMENT_GET = "/agent/shipments";
     public static final String SHIPMENT_DELETE = "/agent/shipment/{id}/delete";
+
+
+    public static final String GET_PROFIT = "/public/profit";
 
 }

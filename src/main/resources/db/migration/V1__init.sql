@@ -41,6 +41,7 @@ create table shipment (
                           weight float8,
                           sent_from_office_id int8,
                           sent_to_office_id int8,
+                          agent varchar,
                           primary key (id)
 );
 

@@ -5,10 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import nbu.logistic.company.domain.ApiUser;
 import nbu.logistic.company.enums.ShipmentStatus;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -33,7 +35,10 @@ public class ShipmentDto {
 
     Long sentToOfficeId;
 
-    long sentDate;
+    LocalDateTime sentDate;
 
-    long updatedDate;
+    LocalDateTime updatedDate;
+
+    String agent;
+
 }

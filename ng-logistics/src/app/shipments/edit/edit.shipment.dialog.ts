@@ -3,13 +3,13 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ApiService } from 'src/app/api.service';
 
 @Component({
-  selector: 'edit-company',
-  templateUrl: './edit.office.dialog.html',
+  selector: 'edit-shipment',
+  templateUrl: './edit.shipment.dialog.html',
   styleUrls: [],
 })
-export class EditOffice implements OnInit{
+export class EditShipment implements OnInit {
   constructor(
-    private dialogRef: MatDialogRef<EditOffice>,
+    private dialogRef: MatDialogRef<EditShipment>,
     private apiService: ApiService,
     @Inject(MAT_DIALOG_DATA) data: any
   ) {
@@ -19,13 +19,21 @@ export class EditOffice implements OnInit{
     } else {
       this.isEdit = false;
     }
-
   }
+
+  shipmentStatuses = ['INITIATED', 'SENT', 'ARRIVED', 'DELIVERED'];
+  offices: any;
+  users: any;
 
   ngOnInit() {
     this.apiService.loadCompanies().subscribe((data: any) => {
-        console.log(data);
-        this.companies = data;
+      this.companies = data;
+    });
+    this.apiService.loadOffices().subscribe((data: any) => {
+      this.offices = data;
+    });
+    this.apiService.loadUsers().subscribe((data: any) => {
+        this.users = data;
       });
   }
 
@@ -51,7 +59,7 @@ export class EditOffice implements OnInit{
   }
 
   create() {
-    this.apiService.createOffice(this.data).subscribe((data: any) => {
+    this.apiService.createShipment(this.data).subscribe((data: any) => {
       console.log(data);
       this.close();
     });

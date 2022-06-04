@@ -66,6 +66,18 @@ export class ApiService {
         return this.http.delete<any>(`${this.baseUrl}/api/admin/logistic-company/${name}/delete`, this.requestOptions());
     }
 
+    // Shipments
+
+    loadShipments() {
+        return this.http.get<any>(`${this.baseUrl}/api/agent/shipments`, this.requestOptions());
+    }
+
+
+    createShipment(body: any) {
+        return this.http.post<any>(`${this.baseUrl}/api/agent/shipment/create`, body, this.requestOptions());
+
+    }
+
 
     private requestOptions() {
         let token = this.authService.getToken();

@@ -7,7 +7,7 @@ import { RegisterDialog } from "./register.dialog";
 
 @Component({
     selector: 'login',
-    templateUrl: './login.component.html',
+    template: '',
     styleUrls: []
 })
 export class LoginComponent implements OnInit {
@@ -24,9 +24,9 @@ export class LoginComponent implements OnInit {
 
     private openDialog(register: boolean) {
         if (register) {
-            let dialogRef = this.dialog.open(RegisterDialog, {});
+            this.dialog.open(RegisterDialog, {});
         } else {
-            let dialogRef = this.dialog.open(LoginDialog, {});
+            this.dialog.open(LoginDialog, {});
         }
     }
 }

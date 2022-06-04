@@ -47,9 +47,8 @@ public class OfficeService {
         officeRepository.save(office);
     }
 
-    public void updateOffice(Long id, OfficeDto officeDto) {
-        Office office = officeRepository.findById(id)
-                .orElseThrow(() -> new GeneralApiException(String.format("Office with id: %s does not exist!", id)));
+    public void updateOffice(OfficeDto officeDto) {
+        Office office = officeRepository.findByOfficeName(officeDto.getOfficeName());
 
         office.setAddress(officeDto.getAddress());
         office.setCity(officeDto.getCity());
@@ -59,8 +58,8 @@ public class OfficeService {
         logisticCompany.ifPresent(office::setLogisticCompany);
     }
 
-    public void deleteOffice(Long id) {
-        officeRepository.deleteById(id);
+    public void deleteOffice(String name) {
+        officeRepository.delete(officeRepository.findByOfficeName(name));
     }
 
     public Optional<Office> findById(Long id) {

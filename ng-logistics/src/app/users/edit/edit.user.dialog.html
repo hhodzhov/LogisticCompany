@@ -1,29 +1,46 @@
 <form>
-    <h1>Edit User</h1>
-    <div class="form-outline mb-4">
-        <input readonly #usernamed type="email" class="form-control" (change)="updateUsername(usernamed.value)" [value]="username"/>
+    <h1 *ngIf="isEdit">Edit User</h1>
+    <h1 *ngIf="!isEdit">Create New User</h1>
+
+    <div class="form-outline mb-4" *ngIf="isEdit">
+        <input readonly type="email" class="form-control" name="username" [(ngModel)]="data.username" />
         <label class="form-label" for="form2Example1">Username</label>
     </div>
 
-    
+    <div class="form-outline mb-4" *ngIf="!isEdit">
+        <input type="email" class="form-control" name="username" [(ngModel)]="data.username" />
+        <label class="form-label" for="form2Example1">Username</label>
+    </div>
+
     <div class="form-outline mb-4">
-        <input #named type="text" class="form-control" (change)="updateName(named.value)" [value]="name"/>
+        <input type="text" class="form-control" name="name" [(ngModel)]="data.name" />
         <label class="form-label" for="form2Example2">Name</label>
     </div>
 
-    <div class="form-outline mb-4">
-        <input readonly #passwordd type="password" class="form-control" (change)="updatePassword(passwordd.value)" [value]="password" />
+    <div class="form-outline mb-4" *ngIf="isEdit">
+        <input readonly type="password" class="form-control" [(ngModel)]="data.password" />
         <label class="form-label" for="form2Example2">Password</label>
     </div>
 
-    <div class="row">
+    <div class="form-outline mb-4" *ngIf="!isEdit">
+        <input type="password" class="form-control" [(ngModel)]="data.password" />
+        <label class="form-label" for="form2Example2">Password</label>
+    </div>
+
+    <div class="row" *ngIf="isEdit">
         <button type="button" class="btn btn-primary btn-block mb-4" (click)="editUser()">Save</button>
     </div>
+
+
+    <div class="row" *ngIf="!isEdit">
+        <button type="button" class="btn btn-primary btn-block mb-4" (click)="create()">Create</button>
+    </div>
+
     <div class="row">
         <button type="button" class="btn btn-warning btn-block mb-4" (click)="close()">Cancel</button>
     </div>
 
-    <div class="row">
+    <div class="row" *ngIf="isEdit">
         <button type="button" class="btn btn-danger btn-block mb-4" (click)="deleteUser()">Delete</button>
     </div>
 

@@ -1,7 +1,6 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Component, Inject } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { AuthService } from "src/app/auth/auth.service";
+import { ApiService } from "src/app/api.service";
 
 @Component({
     selector: 'edit-company',
@@ -12,71 +11,38 @@ export class EditCompany {
     constructor(
         public dialogRef: MatDialogRef<EditCompany>,
         @Inject(MAT_DIALOG_DATA) data: any,
-        private authService: AuthService,
-        private http: HttpClient) {
+        private apiService: ApiService) {
 
-        console.log(data);
-        this.name = data.name;
-        this.country = data.country;
-        this.address = data.centralOfficeAddress;
-        this.city = data.city;
+        if (data) {
+            console.log(data);
+            this.data = data;
+            this.isEdit = true;
+        } else {
+            this.isEdit = false;
+        }
     }
 
-
-    name: any = '';
-    country: any = '';
-    city: any = '';
-    address: any = '';
+    isEdit = true;
+    data: any = {};
 
     updateCompany() {
-        let token = this.authService.getToken();
-        let header = {
-            Authorization: `Bearer ${token}`
-        }
-        const requestOptions: any = {
-            headers: new HttpHeaders(header),
-        };
+        this.apiService.updateCompany(this.data)
+            .subscribe(data => {
+                console.log(data);
+                this.close();
+            });
+    }
 
-        let body = {
-            name: this.name,
-            country: this.country,
-            city: this.city,
-            centralOfficeAddress: this.address
-        }
-
-        this.http.post<any>('http://localhost:8080/api/admin/logistic-company/update', body, requestOptions)
+    create() {
+        this.apiService.createCompany(this.data)
             .subscribe(data => {
                 console.log(data);
                 this.close();
             })
     }
 
-    updateName(name: any) {
-        this.name = name;
-    }
-
-    updateCountry(country: any) {
-        this.country = country;
-    }
-
-    updateCity(city: any) {
-        this.city = city;
-    }
-
-    updateAddress(address: any) {
-        this.address = address;
-    }
-
     delete() {
-        let token = this.authService.getToken();
-        let header = {
-            Authorization: `Bearer ${token}`
-        }
-        const requestOptions: any = {
-            headers: new HttpHeaders(header),
-        };
-
-        this.http.delete<any>(`http://localhost:8080/api/admin/logistic-company/${this.name}/delete`, requestOptions)
+        this.apiService.deleteCompany(this.data.name)
             .subscribe(data => {
                 console.log(data);
                 this.close();

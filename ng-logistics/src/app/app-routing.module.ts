@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { AuthGuardService } from './auth/auth.guard';
 import { CompaniesComponent } from './companies/companies.component';
 import { LoginComponent } from './login/login.component';
+import { OfficesComponent } from './offices/offices.component';
 import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
@@ -28,7 +29,12 @@ const routes: Routes = [
   },
   {
     path: 'offices',
-    component: UsersComponent,
+    component: OfficesComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'shipments',
+    component: OfficesComponent,
     canActivate: [AuthGuardService]
   }
 ];

@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { UsersComponent } from 'src/app/users/users.component';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -21,7 +20,13 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatIconModule } from "@angular/material/icon";
 import { CommonModule } from '@angular/common';
 import { CompaniesComponent } from './companies/companies.component';
-
+import { OfficesComponent } from './offices/offices.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { AppRoutingModule } from './app-routing.module';
+import { ApiService } from './api.service';
+import { EditCompany } from './companies/edit/edit.company.dialog';
+import { EditOffice } from './offices/edit/edit.office.dialog';
+import { EditUserDialog } from './users/edit/edit.user.dialog';
 
 
 @NgModule({
@@ -29,11 +34,15 @@ import { CompaniesComponent } from './companies/companies.component';
     AppComponent,
     UsersComponent,
     LoginComponent,
-    CompaniesComponent
+    CompaniesComponent,
+    OfficesComponent,
+    EditCompany,
+    EditOffice,
+    EditUserDialog
   ],
   imports: [
-    AppRoutingModule,
     CommonModule,
+    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
@@ -46,11 +55,17 @@ import { CompaniesComponent } from './companies/companies.component';
     MatChipsModule,
     MatInputModule,
     MatDialogModule,
+    MatFormFieldModule,
   ],
   providers: [
     AuthGuardService,
-    AuthService
+    AuthService,
+    ApiService
   ],
+  entryComponents: [
+    EditCompany,
+    EditOffice,
+    EditUserDialog],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

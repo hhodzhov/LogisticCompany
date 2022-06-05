@@ -1,0 +1,241 @@
+<table class="table" *ngIf="refId === 'staff'">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">UserName</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of staff">
+      <td>{{ user.name }}</td>
+      <td>{{ user.username }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table" *ngIf="refId === 'clients'">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">UserName</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of clients">
+      <td>{{ user.name }}</td>
+      <td>{{ user.username }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table" *ngIf="refId === 'ship-reg'">
+  <thead>
+    <tr>
+      <th scope="col">Sender Name</th>
+      <th scope="col">Recipient Name</th>
+      <th scope="col">Weight</th>
+      <th scope="col">To Office</th>
+      <th scope="col">Sent at</th>
+      <th scope="col">Agent</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let ship of regShipments">
+      <td>{{ ship.senderName }}</td>
+      <td>{{ ship.recipientName }}</td>
+      <td>{{ ship.weight }}</td>
+      <td>{{ ship.toOffice }}</td>
+      <td>{{ ship.sentDate }}</td>
+      <td>{{ ship.agent }}</td>
+      <td>{{ ship.shipmentStatus }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="refId === 'ship-by'">
+  <form>
+    <div class="form-outline mb-4">
+      <select
+        class="form-select"
+        name="selectedUsername"
+        [(ngModel)]="selectedUsername"
+        (ngModelChange)="loadShipmentsRegisteredBy()"
+      >
+        <option *ngFor="let username of usernames" [value]="username">
+          {{ username }}
+        </option>
+      </select>
+      <label class="form-label" for="form2Example2">Username</label>
+    </div>
+  </form>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Sender Name</th>
+        <th scope="col">Recipient Name</th>
+        <th scope="col">Weight</th>
+        <th scope="col">To Office</th>
+        <th scope="col">Sent at</th>
+        <th scope="col">Agent</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ship of shipmentsBy">
+        <td>{{ ship.senderName }}</td>
+        <td>{{ ship.recipientName }}</td>
+        <td>{{ ship.weight }}</td>
+        <td>{{ ship.toOffice }}</td>
+        <td>{{ ship.sentDate }}</td>
+        <td>{{ ship.agent }}</td>
+        <td>{{ ship.shipmentStatus }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<table class="table" *ngIf="refId === 'ship-not-rec'">
+  <thead>
+    <tr>
+      <th scope="col">Sender Name</th>
+      <th scope="col">Recipient Name</th>
+      <th scope="col">Weight</th>
+      <th scope="col">To Office</th>
+      <th scope="col">Sent at</th>
+      <th scope="col">Agent</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let ship of shipmentsNotReceived">
+      <td>{{ ship.senderName }}</td>
+      <td>{{ ship.recipientName }}</td>
+      <td>{{ ship.weight }}</td>
+      <td>{{ ship.toOffice }}</td>
+      <td>{{ ship.sentDate }}</td>
+      <td>{{ ship.agent }}</td>
+      <td>{{ ship.shipmentStatus }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="refId === 'ship-sent-by'">
+  <form>
+    <div class="form-outline mb-4">
+      <select
+        class="form-select"
+        name="selectedSender"
+        [(ngModel)]="selectedSender"
+        (ngModelChange)="loadFiltratedShipmentsBySender()"
+      >
+        <option *ngFor="let sender of allSenders" [value]="sender">
+          {{ sender }}
+        </option>
+      </select>
+      <label class="form-label" for="form2Example2">Sender</label>
+    </div>
+  </form>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Sender Name</th>
+        <th scope="col">Recipient Name</th>
+        <th scope="col">Weight</th>
+        <th scope="col">To Office</th>
+        <th scope="col">Sent at</th>
+        <th scope="col">Agent</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ship of filtratedShipmentsBySender">
+        <td>{{ ship.senderName }}</td>
+        <td>{{ ship.recipientName }}</td>
+        <td>{{ ship.weight }}</td>
+        <td>{{ ship.toOffice }}</td>
+        <td>{{ ship.sentDate }}</td>
+        <td>{{ ship.agent }}</td>
+        <td>{{ ship.shipmentStatus }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="refId === 'ship-rec-by'">
+  <form>
+    <div class="form-outline mb-4">
+      <select
+        class="form-select"
+        name="selectedRecipient"
+        [(ngModel)]="selectedRecipient"
+        (ngModelChange)="loadFiltratedShipmentsByRecipient()"
+      >
+        <option *ngFor="let recipient of allRecipients" [value]="recipient">
+          {{ recipient }}
+        </option>
+      </select>
+      <label class="form-label" for="form2Example2">Recipient</label>
+    </div>
+  </form>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Sender Name</th>
+        <th scope="col">Recipient Name</th>
+        <th scope="col">Weight</th>
+        <th scope="col">To Office</th>
+        <th scope="col">Sent at</th>
+        <th scope="col">Agent</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ship of filtratedShipmentsByRecipient">
+        <td>{{ ship.senderName }}</td>
+        <td>{{ ship.recipientName }}</td>
+        <td>{{ ship.weight }}</td>
+        <td>{{ ship.toOffice }}</td>
+        <td>{{ ship.sentDate }}</td>
+        <td>{{ ship.agent }}</td>
+        <td>{{ ship.shipmentStatus }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="refId === 'profit'">
+  <form>
+    <div class="form-outline mb-4">
+      <input
+        type="datetime-local"
+        name="from"
+        class="form-control"
+        [(ngModel)]="from"
+        (change)="loadProfit()"
+      />
+      <label class="form-label" for="form2Example2">From</label>
+    </div>
+    <div class="form-outline mb-4">
+        <input
+          type="datetime-local"
+          name="to"
+          class="form-control"
+          [(ngModel)]="to"
+          (change)="loadProfit()"
+        />
+        <label class="form-label" for="form2Example2">To</label>
+      </div>
+  </form>
+  <div class="row">
+    <div class="col-2">
+        <h1>Profit:</h1>
+    </div>
+      <div class="col-2">
+          <h1>{{profit}}</h1>
+      </div>
+  </div>
+</div>

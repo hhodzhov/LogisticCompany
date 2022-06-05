@@ -71,6 +71,10 @@ public class CrudService {
         userService.addRoleToUser(userName, roleName);
     }
 
+    public void removeRoleForUser(String userName, String roleName) {
+        userService.removeRoleForUser(userName, roleName);
+    }
+
     public List<OfficeDto> getOffices() {
         return officeService.getOffices();
     }

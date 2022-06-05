@@ -18,13 +18,31 @@
     </div>
 
     <div class="form-outline mb-4" *ngIf="isEdit">
-        <input readonly type="password" class="form-control" [(ngModel)]="data.password" />
+        <input readonly type="password" name="password" class="form-control" [(ngModel)]="data.password" />
         <label class="form-label" for="form2Example2">Password</label>
     </div>
 
     <div class="form-outline mb-4" *ngIf="!isEdit">
-        <input type="password" class="form-control" [(ngModel)]="data.password" />
+        <input type="password" name="password" class="form-control" [(ngModel)]="data.password"/>
         <label class="form-label" for="form2Example2">Password</label>
+    </div>
+
+    <div class="form-check mb-4">
+        <input type="checkbox" name="role-admin" class="form-check-input" [(ngModel)]="roles.ADMIN" [checked] ="roles.ADMIN" (click)="toggleRole('ADMIN')"/>
+        <label class="form-label" for="form2Example2">ADMIN</label>
+    </div>
+    <div class="form-check mb-4">
+        <input type="checkbox" name="role-agent" class="form-check-input" [(ngModel)]="roles.AGENT" [checked] ="roles.AGENT" (click)="toggleRole('AGENT')"/>
+        <label class="form-label" for="form2Example2">AGENT</label>
+    </div>
+    <div class="form-check mb-4">
+        <input type="checkbox" name="role-courier" class="form-check-input" [(ngModel)]="roles.COURIER" [checked] ="roles.COURIER" (click)="toggleRole('COURIER')"/>
+        <label class="form-label" for="form2Example2">COURIER</label>
+    </div>
+
+    <div class="form-check mb-4">
+        <input type="checkbox" name="role-client" class="form-check-input" [(ngModel)]="roles.CLIENT" [checked] ="roles.CLIENT" (click)="toggleRole('CLIENT')" />
+        <label class="form-label" for="form2Example2">CLIENT</label>
     </div>
 
     <div class="row" *ngIf="isEdit">

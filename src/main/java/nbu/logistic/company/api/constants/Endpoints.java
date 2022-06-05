@@ -9,6 +9,8 @@ public class Endpoints {
     public static final String ROOT = "/api";
     public static final String ROLE_CREATE = "/admin/role/create";
     public static final String ADD_ROLE_TO_USER = "/admin/role/add-to-user";
+
+    public static final String REMOVE_ROLE_FOR_USER = "/admin/role/remove";
     public static final String TOKEN_REFRESH = "/token/refresh";
     public static final String CLIENT_REGISTER = "/register-client";
 
@@ -30,9 +32,8 @@ public class Endpoints {
 
     public static final String SHIPMENT_UPDATE = "/agent/shipment/{id}/update";
     public static final String SHIPMENT_CREATE = "/agent/shipment/create";
-    public static final String SHIPMENT_GET = "/agent/shipments";
+    public static final String SHIPMENT_GET = "/public/shipments";
     public static final String SHIPMENT_DELETE = "/agent/shipment/{id}/delete";
-
 
     public static final String GET_PROFIT = "/public/profit";
 

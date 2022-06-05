@@ -42,7 +42,7 @@ public class ShipmentService {
                 .findAll()
                 .stream()
                 .filter(s -> s.getSentDate().isAfter(from))
-                .filter(s -> s.getSentDate().isEqual(to))
+                .filter(s -> s.getSentDate().isBefore(to))
                 .mapToDouble(Shipment::getPrice)
                 .sum();
     }

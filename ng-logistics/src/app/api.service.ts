@@ -1,98 +1,175 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { AuthService } from "./auth/auth.service";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { AuthService } from './auth/auth.service';
 
 @Injectable()
 export class ApiService {
-    private baseUrl = 'http://localhost:8080';
+  private baseUrl = 'http://localhost:8080';
 
-    constructor(
-        private http: HttpClient,
-        private authService: AuthService) {
-    }
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
-    // USERS
+  // USERS
 
-    loadUsers() {
-        return this.http.get<any>(`${this.baseUrl}/api/admin/users`, this.requestOptions());
-    }
+  loadUsers() {
+    return this.http.get<any>(
+      `${this.baseUrl}/api/admin/users`,
+      this.requestOptions()
+    );
+  }
 
-    deleteUser(username: any) {
-        return this.http.delete<any>(`${this.baseUrl}/api/admin/user/${username}/delete`, this.requestOptions());
-    }
+  deleteUser(username: any) {
+    return this.http.delete<any>(
+      `${this.baseUrl}/api/admin/user/${username}/delete`,
+      this.requestOptions()
+    );
+  }
 
-    editUser(body: any) {
-        return this.http.post<any>(`${this.baseUrl}/api/admin/user/update`, body, this.requestOptions());
-    }
+  editUser(body: any) {
+    return this.http.post<any>(
+      `${this.baseUrl}/api/admin/user/update`,
+      body,
+      this.requestOptions()
+    );
+  }
 
-    createUser(body: any) {
-        return this.http.post<any>(`${this.baseUrl}/api/public/user/create`, body, this.requestOptions());
-    }
+  createUser(body: any) {
+    return this.http.post<any>(
+      `${this.baseUrl}/api/public/user/create`,
+      body,
+      this.requestOptions()
+    );
+  }
 
-    // OFFICES
+  addRole(body: any) {
+    return this.http.post<any>(
+      `${this.baseUrl}/api/admin/role/add-to-user`,
+      body,
+      this.requestOptions()
+    );
+  }
 
-    loadOffices() {
-        return this.http.get<any>(`${this.baseUrl}/api/admin/offices`, this.requestOptions());
-    }
+  removeRole(body: any) {
+    return this.http.post<any>(
+      `${this.baseUrl}/api/admin/role/remove`,
+      body,
+      this.requestOptions()
+    );
+  }
 
-    createOffice(body: any) {
-        return this.http.post<any>(`${this.baseUrl}/api/admin/office/create`, body, this.requestOptions());
-    }
+  // OFFICES
 
-    updateOffice(body: any) {
-        return this.http.post<any>(`${this.baseUrl}/api/admin/office/update`, body, this.requestOptions());
-    }
+  loadOffices() {
+    return this.http.get<any>(
+      `${this.baseUrl}/api/admin/offices`,
+      this.requestOptions()
+    );
+  }
 
-    deleteOffice(officeName: any) {
-        return this.http.delete<any>(`${this.baseUrl}/api/admin/offices/${officeName}/delete`, this.requestOptions());
-    }
+  createOffice(body: any) {
+    return this.http.post<any>(
+      `${this.baseUrl}/api/admin/office/create`,
+      body,
+      this.requestOptions()
+    );
+  }
 
+  updateOffice(body: any) {
+    return this.http.post<any>(
+      `${this.baseUrl}/api/admin/office/update`,
+      body,
+      this.requestOptions()
+    );
+  }
 
-    // Companies
+  deleteOffice(officeName: any) {
+    return this.http.delete<any>(
+      `${this.baseUrl}/api/admin/offices/${officeName}/delete`,
+      this.requestOptions()
+    );
+  }
 
-    loadCompanies() {
-        return this.http.get<any>(`${this.baseUrl}/api/admin/logistic-companies`, this.requestOptions());
-    }
+  // Companies
 
-    createCompany(body: any) {
-        return this.http.post<any>(`${this.baseUrl}/api/admin/logistic-company/create`, body,  this.requestOptions());
-    }
+  loadCompanies() {
+    return this.http.get<any>(
+      `${this.baseUrl}/api/admin/logistic-companies`,
+      this.requestOptions()
+    );
+  }
 
-    updateCompany(body: any) {
-        return this.http.post<any>(`${this.baseUrl}/api/admin/logistic-company/update`, body, this.requestOptions());
-    }
+  createCompany(body: any) {
+    return this.http.post<any>(
+      `${this.baseUrl}/api/admin/logistic-company/create`,
+      body,
+      this.requestOptions()
+    );
+  }
 
-    deleteCompany(name: any) {
-        return this.http.delete<any>(`${this.baseUrl}/api/admin/logistic-company/${name}/delete`, this.requestOptions());
-    }
+  updateCompany(body: any) {
+    return this.http.post<any>(
+      `${this.baseUrl}/api/admin/logistic-company/update`,
+      body,
+      this.requestOptions()
+    );
+  }
 
-    // Shipments
+  deleteCompany(name: any) {
+    return this.http.delete<any>(
+      `${this.baseUrl}/api/admin/logistic-company/${name}/delete`,
+      this.requestOptions()
+    );
+  }
 
-    loadShipments() {
-        return this.http.get<any>(`${this.baseUrl}/api/agent/shipments`, this.requestOptions());
-    }
+  // Shipments
 
+  loadShipments() {
+    return this.http.get<any>(
+      `${this.baseUrl}/api/public/shipments`,
+      this.requestOptions()
+    );
+  }
 
-    createShipment(body: any) {
-        return this.http.post<any>(`${this.baseUrl}/api/agent/shipment/create`, body, this.requestOptions());
-    }
+  createShipment(body: any) {
+    return this.http.post<any>(
+      `${this.baseUrl}/api/agent/shipment/create`,
+      body,
+      this.requestOptions()
+    );
+  }
 
-    updateShipment(body: any, id :any) {
-        return this.http.post<any>(`${this.baseUrl}/api/agent/shipment/${id}/update`, body, this.requestOptions());
-    }
+  updateShipment(body: any, id: any) {
+    return this.http.post<any>(
+      `${this.baseUrl}/api/agent/shipment/${id}/update`,
+      body,
+      this.requestOptions()
+    );
+  }
 
-    deleteShipment(id: any) {
-        return this.http.delete<any>(`${this.baseUrl}/api/agent/shipment/${id}/delete`, this.requestOptions());
-    }
+  deleteShipment(id: any) {
+    return this.http.delete<any>(
+      `${this.baseUrl}/api/agent/shipment/${id}/delete`,
+      this.requestOptions()
+    );
+  }
 
+  // Profit
 
-    private requestOptions() {
-        let token = this.authService.getToken();
-        let header = {
-            Authorization: `Bearer ${token}`
-        }
-        return {
-            headers: new HttpHeaders(header),
-        };
-    }
+  getProfit(from: any, to: any) {
+    let fromIso = new Date(from).toISOString();
+    let toIso = new Date(to).toISOString();
+    return this.http.get<any>(
+      `${this.baseUrl}/api/public/profit?from=${fromIso}&to=${toIso}`,
+      this.requestOptions()
+    );
+  }
+
+  private requestOptions() {
+    let token = this.authService.getToken();
+    let header = {
+      Authorization: `Bearer ${token}`,
+    };
+    return {
+      headers: new HttpHeaders(header),
+    };
+  }
 }

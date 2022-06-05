@@ -33,8 +33,8 @@ export class EditShipment implements OnInit {
       this.offices = data;
     });
     this.apiService.loadUsers().subscribe((data: any) => {
-        this.users = data;
-      });
+      this.users = data;
+    });
   }
 
   isEdit = true;
@@ -43,19 +43,19 @@ export class EditShipment implements OnInit {
   companies: any;
 
   update() {
-    this.apiService.updateOffice(this.data).subscribe((data: any) => {
-      console.log(data);
-      this.close();
-    });
-  }
-
-  delete() {
     this.apiService
-      .deleteOffice(this.data.officeName)
+      .updateShipment(this.data, this.data.id)
       .subscribe((data: any) => {
         console.log(data);
         this.close();
       });
+  }
+
+  delete() {
+    this.apiService.deleteShipment(this.data.id).subscribe((data: any) => {
+      console.log(data);
+      this.close();
+    });
   }
 
   create() {

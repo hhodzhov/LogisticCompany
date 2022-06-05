@@ -75,7 +75,14 @@ export class ApiService {
 
     createShipment(body: any) {
         return this.http.post<any>(`${this.baseUrl}/api/agent/shipment/create`, body, this.requestOptions());
+    }
 
+    updateShipment(body: any, id :any) {
+        return this.http.post<any>(`${this.baseUrl}/api/agent/shipment/${id}/update`, body, this.requestOptions());
+    }
+
+    deleteShipment(id: any) {
+        return this.http.delete<any>(`${this.baseUrl}/api/agent/shipment/${id}/delete`, this.requestOptions());
     }
 
 

@@ -18,6 +18,8 @@ import java.time.LocalDateTime;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ShipmentDto {
 
+    Long id;
+
     String senderName;
 
     String recipientName;

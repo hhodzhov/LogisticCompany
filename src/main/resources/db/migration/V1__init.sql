@@ -42,6 +42,7 @@ create table shipment (
                           sent_from_office_id int8,
                           sent_to_office_id int8,
                           agent varchar,
+                          price float8,
                           primary key (id)
 );
 

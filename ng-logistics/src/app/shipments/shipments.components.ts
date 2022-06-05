@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { ApiService } from '../api.service';
 import { EditShipment } from './edit/edit.shipment.dialog';
@@ -9,11 +9,11 @@ import { EditShipment } from './edit/edit.shipment.dialog';
   templateUrl: './shipments.component.html',
   styleUrls: ['./shipments.component.css'],
 })
-export class ShipmentsComponent {
+export class ShipmentsComponent implements OnInit {
   createCompanyIcon = faPlus;
   constructor(private apiService: ApiService, private dialog: MatDialog) {}
 
-  shipments = [];
+  shipments: any;
 
   reloadShipments() {
     this.apiService.loadShipments().subscribe((data: any) => {
@@ -22,11 +22,26 @@ export class ShipmentsComponent {
     });
   }
 
+  ngOnInit() {
+    this.reloadShipments();
+  }
 
   createShipment() {
     let ref = this.dialog.open(EditShipment);
 
     ref.afterClosed().subscribe((_result: any) => {
+      this.reloadShipments();
+    });
+  }
+
+  openEditShipment(shipment: any) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = shipment;
+
+    let ref = this.dialog.open(EditShipment, dialogConfig);
+
+    ref.afterClosed().subscribe((result: any) => {
         this.reloadShipments();
     });
   }

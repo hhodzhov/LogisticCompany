@@ -3,3 +3,137 @@
     <fa-icon [icon]="createCompanyIcon"></fa-icon>
   </div>
 </div>
+
+<div
+  class="row entry"
+  *ngFor="let shipment of shipments"
+  (click)="openEditShipment(shipment)"
+>
+  <div class="col-2">
+    <img
+      class="card-img-top pic"
+      src="https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/256x256/delivery_truck.png"
+      alt="Card image cap"
+    />
+  </div>
+
+  <div class="col-1">
+    <div class="row">
+      <div class="col-12">
+        <h4>Sender Name</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <h2>{{ shipment.senderName }}</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-1">
+    <div class="row">
+      <div class="col-12">
+        <h4>Recipient Name</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <h2>{{ shipment.recipientName }}</h2>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-1">
+    <div class="row">
+      <div class="col-12">
+        <h4>Delivery Address</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <h2>{{ shipment.deliveryAddress }}</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-1">
+    <div class="row">
+      <div class="col-12">
+        <h4>Weight</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <h2>{{ shipment.weight }}</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-1">
+    <div class="row">
+      <div class="col-12">
+        <h4>Status</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <h2>{{ shipment.shipmentStatus }}</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-1">
+    <div class="row">
+      <div class="col-12">
+        <h4>To Office</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <h2>{{ shipment.toOffice }}</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-1">
+    <div class="row">
+      <div class="col-12">
+        <h4>Sent Date</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <h2>{{ shipment.sentDate }}</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-1">
+    <div class="row">
+      <div class="col-12">
+        <h4>Updated Date</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <h2>{{ shipment.updatedDate }}</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-1">
+    <div class="row">
+      <div class="col-12">
+        <h4>Agent</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <h2>{{ shipment.agent }}</h2>
+      </div>
+    </div>
+  </div>
+
+
+</div>

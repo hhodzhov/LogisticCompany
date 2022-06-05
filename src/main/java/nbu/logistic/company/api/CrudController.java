@@ -125,10 +125,10 @@ public class CrudController {
     // Shipment Crud Endpoints
     @GetMapping(SHIPMENT_GET)
     public ResponseEntity<List<ShipmentDto>> getAllShipments(
-            @RequestParam String agent,
-            @RequestParam ShipmentStatus status,
-            @RequestParam String sentFrom,
-            @RequestParam String receivedFrom
+            @RequestParam(required = false) String agent,
+            @RequestParam(required = false) ShipmentStatus status,
+            @RequestParam(required = false) String sentFrom,
+            @RequestParam(required = false) String receivedFrom
     ) {
         return ResponseEntity.ok(crudService.getAllShipments(agent, status, sentFrom, receivedFrom));
     }

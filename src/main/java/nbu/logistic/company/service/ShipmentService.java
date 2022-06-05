@@ -67,6 +67,7 @@ public class ShipmentService {
         shipment.setSentDate(shipmentDto.getSentDate());
         shipment.setUpdatedDate(shipmentDto.getUpdatedDate());
 
+        shipmentRepository.save(shipment);
     }
 
     public void delete(Long id) {
@@ -75,6 +76,11 @@ public class ShipmentService {
 
     public void createShipment(ShipmentDto shipmentDto) {
         Shipment shipment = shipmentMapper.toShipment(shipmentDto);
+
+        officeService.findById(shipmentDto.getSentToOfficeId())
+                .ifPresent(shipment::setSentToOffice);
+        officeService.findById(shipmentDto.getSentFromOfficeId())
+                .ifPresent(shipment::setSentFromOffice);
         shipment.setPrice(taxConfig.getPrice(shipmentDto.getWeight()));
 
         shipmentRepository.save(shipment);

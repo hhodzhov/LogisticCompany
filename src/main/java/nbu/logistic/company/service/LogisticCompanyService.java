@@ -5,13 +5,17 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import nbu.logistic.company.api.dto.LogisticCompanyDto;
+import nbu.logistic.company.api.dto.UserDto;
 import nbu.logistic.company.api.exceptions.GeneralApiException;
+import nbu.logistic.company.domain.ApiUser;
 import nbu.logistic.company.domain.LogisticCompany;
 import nbu.logistic.company.mapper.CompanyMapper;
+import nbu.logistic.company.mapper.UserMapper;
 import nbu.logistic.company.repository.LogisticCompanyRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -25,6 +29,8 @@ public class LogisticCompanyService {
 
     LogisticCompanyRepository logisticCompanyRepository;
     CompanyMapper companyMapper;
+
+    UserMapper userMapper;
 
     public void updateLogisticCompany(LogisticCompanyDto logisticCompanyDto) {
 
@@ -63,4 +69,5 @@ public class LogisticCompanyService {
     public Optional<LogisticCompany> findById(Long id) {
         return logisticCompanyRepository.findById(id);
     }
+
 }

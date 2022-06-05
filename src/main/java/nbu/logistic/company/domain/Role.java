@@ -6,13 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -29,6 +23,7 @@ public class Role {
     @Id
     @GeneratedValue(strategy = AUTO)
     Long id;
+
     String name;
 
 //    @ManyToMany(fetch = FetchType.LAZY)

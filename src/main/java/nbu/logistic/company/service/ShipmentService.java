@@ -13,6 +13,7 @@ import nbu.logistic.company.repository.ShipmentRepository;
 import nbu.logistic.company.util.ConversionUtils;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -36,6 +37,16 @@ public class ShipmentService {
                 .collect(Collectors.toList());
     }
 
+    public double getProfitFromTo(LocalDateTime from, LocalDateTime to) {
+        return shipmentRepository
+                .findAll()
+                .stream()
+                .filter(s -> s.getSentDate().isAfter(from))
+                .filter(s -> s.getSentDate().isEqual(to))
+                .mapToDouble(Shipment::getPrice)
+                .sum();
+    }
+
     public void updateShipment(Long id, ShipmentDto shipmentDto) {
         Shipment shipment = shipmentRepository.findById(id)
                 .orElseThrow(() -> new GeneralApiException(String.format("Shipment with id: %s does not exist!", id)));
@@ -53,9 +64,10 @@ public class ShipmentService {
         Optional<Office> officeTo = officeService.findById(shipmentDto.getSentToOfficeId());
         officeTo.ifPresent(shipment::setSentToOffice);
 
-        shipment.setSentDate(ConversionUtils.FROM_EPOC_TO_LOCAL_DATE_TIME.apply(shipmentDto.getSentDate()));
-        shipment.setUpdatedDate(ConversionUtils.FROM_EPOC_TO_LOCAL_DATE_TIME.apply(shipmentDto.getUpdatedDate()));
+        shipment.setSentDate(shipmentDto.getSentDate());
+        shipment.setUpdatedDate(shipmentDto.getUpdatedDate());
 
+        shipmentRepository.save(shipment);
     }
 
     public void delete(Long id) {
@@ -64,6 +76,11 @@ public class ShipmentService {
 
     public void createShipment(ShipmentDto shipmentDto) {
         Shipment shipment = shipmentMapper.toShipment(shipmentDto);
+
+        officeService.findById(shipmentDto.getSentToOfficeId())
+                .ifPresent(shipment::setSentToOffice);
+        officeService.findById(shipmentDto.getSentFromOfficeId())
+                .ifPresent(shipment::setSentFromOffice);
         shipment.setPrice(taxConfig.getPrice(shipmentDto.getWeight()));
 
         shipmentRepository.save(shipment);

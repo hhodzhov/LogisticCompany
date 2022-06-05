@@ -8,9 +8,12 @@ import nbu.logistic.company.api.dto.OfficeDto;
 import nbu.logistic.company.api.dto.ShipmentDto;
 import nbu.logistic.company.api.dto.UserDto;
 import nbu.logistic.company.domain.Role;
+import nbu.logistic.company.enums.ShipmentStatus;
 import nbu.logistic.company.mapper.UserMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -84,8 +87,23 @@ public class CrudService {
         officeService.deleteOffice(name);
     }
 
-    public List<ShipmentDto> getAllShipments() {
-        return shipmentService.getAllShipments();
+    public List<ShipmentDto> getAllShipments(
+            String agent,
+            ShipmentStatus status,
+            String sentFrom,
+            String receivedFrom
+    ) {
+        return shipmentService.getAllShipments()
+                .stream()
+                .filter(s -> status == null || s.getShipmentStatus() == status)
+                .filter(s -> sentFrom == null || s.getSenderName().equals(sentFrom))
+                .filter(s -> receivedFrom == null || s.getRecipientName().equals(receivedFrom))
+                .filter(s -> agent == null || s.getAgent().equals(agent))
+                .collect(Collectors.toList());
+    }
+
+    public double getProfitFromTo(LocalDateTime from, LocalDateTime to) {
+        return shipmentService.getProfitFromTo(from, to);
     }
 
     public void updateShipment(Long id, ShipmentDto shipmentDto) {

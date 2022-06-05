@@ -6,11 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import nbu.logistic.company.enums.ShipmentStatus;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -44,6 +40,8 @@ public class Shipment {
     LocalDateTime sentDate;
 
     LocalDateTime updatedDate;
+
+    String agent;
 
     double price;
 

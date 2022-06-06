@@ -29,6 +29,7 @@ import { EditOffice } from './offices/edit/edit.office.dialog';
 import { EditUserDialog } from './users/edit/edit.user.dialog';
 import { ShipmentsComponent } from './shipments/shipments.components';
 import { EditShipment } from './shipments/edit/edit.shipment.dialog';
+import { ReferencesComponent } from './references/references.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { EditShipment } from './shipments/edit/edit.shipment.dialog';
     CompaniesComponent,
     OfficesComponent,
     ShipmentsComponent,
+    ReferencesComponent,
     EditCompany,
     EditOffice,
     EditUserDialog,

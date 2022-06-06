@@ -80,10 +80,22 @@ public class UserService implements UserDetailsService {
         ApiUser apiUser = userRepository.findByUsername(userName);
         Role role = roleRepository.findByName(roleName);
         apiUser.getRoles().add(role);
+        userRepository.save(apiUser);
 
         //no need of calling save method, as the whole class is marked as transactional
     }
 
+    public void removeRoleForUser(String userName, String roleName) {
+
+        log.info("Removing role: {} to user: {} ", roleName, userName);
+
+        ApiUser apiUser = userRepository.findByUsername(userName);
+        Role role = roleRepository.findByName(roleName);
+        apiUser.getRoles().remove(role);
+        userRepository.save(apiUser);
+
+        //no need of calling save method, as the whole class is marked as transactional
+    }
     public ApiUser getUser(String userName) {
         log.info("Fetching user: {} ", userName);
 

@@ -27,5 +27,5 @@ public class ApiUser {
     String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    Collection<Role> roles = new ArrayList<>();
+    List<Role> roles = new ArrayList<>();
 }

@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="canCreateNew()">
   <div class="col-1 crate mb-3 mt-2" (click)="createShipment()">
     <fa-icon [icon]="createCompanyIcon"></fa-icon>
   </div>

@@ -5,6 +5,7 @@ import { AuthGuardService } from './auth/auth.guard';
 import { CompaniesComponent } from './companies/companies.component';
 import { LoginComponent } from './login/login.component';
 import { OfficesComponent } from './offices/offices.component';
+import { ReferencesComponent } from './references/references.component';
 import { ShipmentsComponent } from './shipments/shipments.components';
 import { UsersComponent } from './users/users.component';
 
@@ -37,7 +38,12 @@ const routes: Routes = [
     path: 'shipments',
     component: ShipmentsComponent,
     canActivate: [AuthGuardService]
-  }
+  },
+  {
+    path: 'references/:refId',
+    component: ReferencesComponent,
+    canActivate: [AuthGuardService]
+  },
 ];
 
 @NgModule({

@@ -1,27 +1,34 @@
 <div class="container-fluid">
   <div class="row flex-nowrap">
     <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-menu">
-      <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-        <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+      <div
+        class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100"
+      >
+        <a
+          href="/"
+          class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+        >
           <span class="fs-5 d-none d-sm-inline">Menu</span>
         </a>
-        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-          <li class="nav-item">
+        <ul
+          class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
+          id="menu"
+        >
+          <li class="nav-item" *ngIf="hasRole('ADMIN')">
             <a routerLink="/users" class="nav-link align-middle px-0">
               <fa-icon [icon]="usersIcon"></fa-icon>
               <span class="ms-1 d-none d-sm-inline">Users</span>
             </a>
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="hasRole('ADMIN')">
             <a routerLink="/companies" class="nav-link align-middle px-0">
               <fa-icon [icon]="companiesIcon"></fa-icon>
               <span class="ms-1 d-none d-sm-inline">Companies</span>
             </a>
           </li>
 
-
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="hasRole('ADMIN')">
             <a routerLink="/offices" class="nav-link align-middle px-0">
               <fa-icon [icon]="officesIcon"></fa-icon>
               <span class="ms-1 d-none d-sm-inline">Offices</span>
@@ -35,51 +42,121 @@
             </a>
           </li>
 
-
-
-          <li>
-            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-              <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">References</span> </a>
-            <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+          <li *ngIf="hasRole('ADMIN')">
+            <a
+              href="#submenu1"
+              data-bs-toggle="collapse"
+              class="nav-link px-0 align-middle"
+            >
+              <fa-icon [icon]="referencesIcon"></fa-icon>
+              <span class="ms-1 d-none d-sm-inline">References</span>
+            </a>
+            <ul
+              class="collapse show nav flex-column ms-1"
+              id="submenu1"
+              data-bs-parent="#menu"
+            >
               <li class="w-100">
-                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Staff</span></a>
+                <a [routerLink]="['references', 'staff']" class="nav-link px-0">
+                  <span class="d-none d-sm-inline">
+                    <fa-icon [icon]="bulletIcon"></fa-icon> Staff</span
+                  ></a
+                >
               </li>
 
               <li class="w-100">
-                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Clients</span></a>
-              </li>
-
-
-              <li class="w-100">
-                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Registered Shipments</span></a>
-              </li>
-
-              <li class="w-100">
-                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Registered Shipments By</span></a>
-              </li>
-
-              <li class="w-100">
-                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Shipments not received</span></a>
+                <a
+                  [routerLink]="['references', 'clients']"
+                  class="nav-link px-0"
+                >
+                  <span class="d-none d-sm-inline"
+                    ><fa-icon [icon]="bulletIcon"></fa-icon>Clients</span
+                  ></a
+                >
               </li>
 
               <li class="w-100">
-                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Shipments sent from client</span> </a>
+                <a
+                  [routerLink]="['references', 'ship-reg']"
+                  class="nav-link px-0"
+                >
+                  <span class="d-none d-sm-inline"
+                    ><fa-icon [icon]="bulletIcon"> </fa-icon>Registered
+                    Shipments</span
+                  ></a
+                >
               </li>
 
               <li class="w-100">
-                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Shipments received from client</span> </a>
+                <a
+                  [routerLink]="['references', 'ship-by']"
+                  class="nav-link px-0"
+                >
+                  <span class="d-none d-sm-inline"
+                    ><fa-icon [icon]="bulletIcon"> </fa-icon>Registered
+                    Shipments By</span
+                  ></a
+                >
+              </li>
+
+              <li class="w-100">
+                <a
+                  [routerLink]="['references', 'ship-not-rec']"
+                  class="nav-link px-0"
+                >
+                  <span class="d-none d-sm-inline"
+                    ><fa-icon [icon]="bulletIcon"></fa-icon>Shipments not
+                    received</span
+                  ></a
+                >
+              </li>
+
+              <li class="w-100">
+                <a
+                  [routerLink]="['references', 'ship-sent-by']"
+                  class="nav-link px-0"
+                >
+                  <span class="d-none d-sm-inline"
+                    ><fa-icon [icon]="bulletIcon"></fa-icon>Shipments sent from
+                    client</span
+                  >
+                </a>
+              </li>
+
+              <li class="w-100">
+                <a
+                  [routerLink]="['references', 'ship-rec-by']"
+                  class="nav-link px-0"
+                >
+                  <span class="d-none d-sm-inline"
+                    ><fa-icon [icon]="bulletIcon"></fa-icon>Shipments received
+                    from client</span
+                  >
+                </a>
               </li>
 
               <li>
-                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Profit</span></a>
+                <a
+                  [routerLink]="['references', 'profit']"
+                  class="nav-link px-0"
+                >
+                  <span class="d-none d-sm-inline"
+                    ><fa-icon [icon]="bulletIcon"></fa-icon>Profit</span
+                  ></a
+                >
               </li>
             </ul>
           </li>
-
         </ul>
-        <hr>
+        <hr />
         <div class="dropdown pb-4">
-          <img src="https://cdn-icons-png.flaticon.com/512/4003/4003644.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/4003/4003644.png"
+            alt="hugenerd"
+            width="30"
+            height="30"
+            class="rounded-circle"
+          />
           <button class="btn btn-warning" (click)="logout()">Logout</button>
         </div>
       </div>
@@ -89,9 +166,7 @@
       <router-outlet></router-outlet>
     </div>
   </div>
-
 </div>
 
-
-
-git remote set-url origin https://PSPetrova@https://github.com/hhodzhov/LogisticCompany.git
+git remote set-url origin
+https://PSPetrova@https://github.com/hhodzhov/LogisticCompany.git

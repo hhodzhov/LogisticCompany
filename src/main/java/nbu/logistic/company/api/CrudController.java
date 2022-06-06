@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 import static nbu.logistic.company.api.constants.Endpoints.*;
@@ -100,6 +102,11 @@ public class CrudController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping(REMOVE_ROLE_FOR_USER)
+    public ResponseEntity<?> removeRoleFoUser(@RequestBody RoleToUserDto roleToRemove) {
+        crudService.removeRoleForUser(roleToRemove.getUserName(), roleToRemove.getRoleName());
+        return ResponseEntity.ok().build();
+    }
 
     // Office Crud Endpoints
     @GetMapping(OFFICE_GET)
@@ -150,10 +157,12 @@ public class CrudController {
 
     @GetMapping(GET_PROFIT)
     public ResponseEntity<Double> getProfit(
-            @RequestParam LocalDateTime from,
-            @RequestParam LocalDateTime to
+            @RequestParam Instant from,
+            @RequestParam Instant to
     ) {
-        return ResponseEntity.ok(crudService.getProfitFromTo(from, to));
+        return ResponseEntity.ok(crudService.getProfitFromTo(
+                LocalDateTime.ofInstant(from, ZoneId.systemDefault()),
+                LocalDateTime.ofInstant(to, ZoneId.systemDefault())));
     }
 
 }

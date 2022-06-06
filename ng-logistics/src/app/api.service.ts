@@ -131,7 +131,7 @@ export class ApiService {
 
   createShipment(body: any) {
     return this.http.post<any>(
-      `${this.baseUrl}/api/agent/shipment/create`,
+      `${this.baseUrl}/api/admin/shipment/create`,
       body,
       this.requestOptions()
     );
@@ -139,7 +139,7 @@ export class ApiService {
 
   updateShipment(body: any, id: any) {
     return this.http.post<any>(
-      `${this.baseUrl}/api/agent/shipment/${id}/update`,
+      `${this.baseUrl}/api/admin/shipment/${id}/update`,
       body,
       this.requestOptions()
     );
@@ -147,7 +147,7 @@ export class ApiService {
 
   deleteShipment(id: any) {
     return this.http.delete<any>(
-      `${this.baseUrl}/api/agent/shipment/${id}/delete`,
+      `${this.baseUrl}/api/admin/shipment/${id}/delete`,
       this.requestOptions()
     );
   }

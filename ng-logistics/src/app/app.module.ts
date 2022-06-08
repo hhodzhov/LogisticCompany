@@ -30,6 +30,7 @@ import { EditUserDialog } from './users/edit/edit.user.dialog';
 import { ShipmentsComponent } from './shipments/shipments.components';
 import { EditShipment } from './shipments/edit/edit.shipment.dialog';
 import { ReferencesComponent } from './references/references.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { ReferencesComponent } from './references/references.component';
     OfficesComponent,
     ShipmentsComponent,
     ReferencesComponent,
+    HomeComponent,
     EditCompany,
     EditOffice,
     EditUserDialog,

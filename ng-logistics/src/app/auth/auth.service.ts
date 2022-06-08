@@ -28,6 +28,7 @@ export class AuthService {
   public logout() {
     localStorage.removeItem('token');
     location.reload();
+    this.router.navigate(['home']);
   }
 
   public login(username: any, password: any) {
@@ -38,7 +39,7 @@ export class AuthService {
       })
       .subscribe((data: any) => {
         this.saveToken(data['access_token']);
-        this.router.navigate(['users']);
+        this.router.navigate(['home']);
       });
   }
 

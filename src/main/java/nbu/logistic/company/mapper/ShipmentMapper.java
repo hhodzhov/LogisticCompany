@@ -12,6 +12,7 @@ public interface ShipmentMapper {
     @Mapping(target = "id", source = "id")
     @Mapping(target = "sentFromOfficeId", expression = "java( shipment.getSentFromOffice() != null ? shipment.getSentFromOffice().getId() : null )")
     @Mapping(target = "sentToOfficeId", expression = "java( shipment.getSentToOffice() != null ? shipment.getSentToOffice().getId() : null )")
+    @Mapping(target = "price", expression = "java( shipment.getPrice() )")
     ShipmentDto toShipmentDto(Shipment shipment);
     Shipment toShipment(ShipmentDto shipmentDto);
 }

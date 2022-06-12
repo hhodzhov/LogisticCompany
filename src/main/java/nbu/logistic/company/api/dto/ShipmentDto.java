@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import nbu.logistic.company.domain.ApiUser;
 import nbu.logistic.company.enums.ShipmentStatus;
 
 import javax.persistence.EnumType;
@@ -42,5 +41,7 @@ public class ShipmentDto {
     LocalDateTime updatedDate;
 
     String agent;
+
+    double price;
 
 }
